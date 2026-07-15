@@ -33,3 +33,6 @@ htmlcov/
 
 # OS
 .DS_Store
+
+# Local clone of reference repo (Phase 2 fetch)
+.ref-rag/
