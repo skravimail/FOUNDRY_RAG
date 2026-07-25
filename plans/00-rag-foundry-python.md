@@ -1,5 +1,7 @@
 # Plan: Python Port of `deployed-in-azure/RAG` on Microsoft Foundry
 
+> **Status note (2026-07-25):** Modules **03–08** (reranking, multi-query, HyDE, chunking strategies, contextual retrieval, GraphRAG) were removed from the active tree. Retained demos: **01 Naive**, **02 Hybrid**, **09 FoundryIQ**. This document remains as historical porting context.
+
 ## Goal
 
 Port the 9 RAG-mechanism demos from [`deployed-in-azure/RAG`](https://github.com/deployed-in-azure/RAG) (C#/.NET)

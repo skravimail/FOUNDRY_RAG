@@ -39,7 +39,7 @@ flowchart TB
 
 **When to use it**
 
-Use hybrid RAG when you have a managed search index, mixed structured and unstructured fields, and need better recall than in-memory vector search alone. It is the foundation for reranking, multi-query, and HyDE modules in this repo.
+Use hybrid RAG when you have a managed search index, mixed structured and unstructured fields, and need better recall than in-memory vector search alone.
 
 **Run**
 

@@ -2,7 +2,7 @@
 
 **Purpose**
 
-FoundryIQ demonstrates agentic retrieval through Microsoft Foundry: a project agent wired to Azure AI Search Knowledge Base resources performs multi-step hybrid lookup and returns answers with citations. Unlike modules 01–08, this path uses the Foundry agent + `AzureAISearchToolDefinition` pattern rather than hand-rolled `SearchClient.search()` calls in application code.
+FoundryIQ demonstrates agentic retrieval through Microsoft Foundry: a project agent wired to Azure AI Search Knowledge Base resources performs multi-step hybrid lookup and returns answers with citations. Unlike modules 01–02, this path uses the Foundry agent + `AzureAISearchToolDefinition` pattern rather than hand-rolled `SearchClient.search()` calls in application code.
 
 **Problem it solves**
 

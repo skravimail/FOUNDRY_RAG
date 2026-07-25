@@ -33,7 +33,7 @@ flowchart LR
 
 **When to use it**
 
-Use naive RAG to validate embeddings, prompts, and end-to-end wiring before adding Azure AI Search, reranking, or query transforms. It fits small, static corpora that fit in memory and do not need BM25 keyword recall or managed index features.
+Use naive RAG to validate embeddings, prompts, and end-to-end wiring before adding Azure AI Search. It fits small, static corpora that fit in memory and do not need BM25 keyword recall or managed index features.
 
 **Run**
 

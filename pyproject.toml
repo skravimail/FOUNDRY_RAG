@@ -1,7 +1,7 @@
 [project]
 name = "foundry-rag"
 version = "0.1.0"
-description = "Python port of deployed-in-azure/RAG's 9 RAG-mechanism demos, running on Microsoft/Azure AI Foundry"
+description = "Python Foundry RAG demos (naive, hybrid, FoundryIQ) on Microsoft/Azure AI Foundry"
 readme = "README.md"
 authors = [
     { name = "alpha", email = "Alba@abc.com" }
@@ -13,7 +13,6 @@ dependencies = [
     "azure-ai-projects>=2.3.0",
     "azure-identity>=1.25.3",
     "azure-search-documents>=12.0.0",
-    "neo4j>=6.2.0",
     "openai>=2.45.0",
     "python-dotenv>=1.2.2",
     "rich>=15.0.0",
