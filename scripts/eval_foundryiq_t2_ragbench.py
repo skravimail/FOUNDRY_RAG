@@ -34,8 +34,14 @@ from foundry_rag.eval.t2_ragbench.metrics import (  # noqa: E402
     number_match,
     recall_at_k,
 )
+from foundry_rag.eval.t2_ragbench.lancedb_runner import METHOD_NAMES as LANCEDB_METHODS  # noqa: E402
 from foundry_rag.eval.t2_ragbench.pgvector_runner import METHOD_NAMES as PGVECTOR_METHODS  # noqa: E402
-from foundry_rag.eval.t2_ragbench.runner import run_foundryiq, run_oracle, run_pgvector  # noqa: E402
+from foundry_rag.eval.t2_ragbench.runner import (  # noqa: E402
+    run_foundryiq,
+    run_lancedb,
+    run_oracle,
+    run_pgvector,
+)
 from foundry_rag.paths import DATA_ROOT  # noqa: E402
 
 console = Console()
@@ -45,6 +51,7 @@ METHOD_LABELS = {
     "foundryiq": "FoundryIQ / Knowledge Base",
     "oracle": "Oracle Context",
     "pgvector": PGVECTOR_METHODS["hybrid"],
+    "lancedb": LANCEDB_METHODS["hybrid"],
 }
 
 
@@ -117,7 +124,7 @@ def _write_summary_csv(path: Path, summary: list[dict[str, Any]]) -> None:
 
 def _resolve_methods(choice: str) -> list[str]:
     if choice == "all":
-        return ["foundryiq", "oracle", "pgvector"]
+        return ["foundryiq", "oracle", "pgvector", "lancedb"]
     if choice == "both":
         return ["foundryiq", "oracle"]
     return [choice]
@@ -130,7 +137,7 @@ def main() -> int:
     parser.add_argument("--oracle", type=Path, default=DEFAULT_ORACLE)
     parser.add_argument(
         "--method",
-        choices=("foundryiq", "oracle", "pgvector", "both", "all"),
+        choices=("foundryiq", "oracle", "pgvector", "lancedb", "both", "all"),
         default="pgvector",
         help="Which baseline(s) to run (default: pgvector)",
     )
@@ -142,7 +149,7 @@ def main() -> int:
         "--retrieval",
         choices=("hybrid", "vector", "bm25"),
         default="hybrid",
-        help="pgvector retrieval mode (default: hybrid = BM25 + vector RRF)",
+        help="Local store retrieval mode for pgvector/lancedb (default: hybrid = BM25 + vector RRF)",
     )
     parser.add_argument(
         "--resume",
@@ -171,6 +178,7 @@ def main() -> int:
 
     methods = _resolve_methods(args.method)
     METHOD_LABELS["pgvector"] = PGVECTOR_METHODS[args.retrieval]
+    METHOD_LABELS["lancedb"] = LANCEDB_METHODS[args.retrieval]
     oracle_by_id = load_oracle_by_id(args.oracle) if "oracle" in methods else {}
     done = _load_done_ids(out_jsonl) if args.resume else set()
 
@@ -203,6 +211,12 @@ def main() -> int:
                     result = run_foundryiq(qrow["question"], top_k=args.top_k)
                 elif method == "pgvector":
                     result = run_pgvector(
+                        qrow["question"],
+                        top_k=args.top_k,
+                        retrieval=args.retrieval,
+                    )
+                elif method == "lancedb":
+                    result = run_lancedb(
                         qrow["question"],
                         top_k=args.top_k,
                         retrieval=args.retrieval,

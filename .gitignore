@@ -39,3 +39,6 @@ htmlcov/
 
 # Hugging Face cache (if ever written under the repo)
 .cache/
+
+# Local LanceDB index (rebuilt by scripts/index_t2_ragbench_lancedb.py)
+data/t2_ragbench/lancedb/
