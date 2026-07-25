@@ -27,3 +27,14 @@ uv run python scripts/upload_t2_ragbench_pdfs.py
 ```
 
 Blobs land at `t2rag/FinQA/<context_id>/<page_*.pdf>` in container `t2-ragbench`. See `blob_manifest.json`.
+
+## Local Postgres / pgvector RAG
+
+```bash
+docker compose up -d
+uv run python scripts/index_t2_ragbench_pgvector.py --reset
+# hybrid = Okapi BM25 + dense vector (RRF); also: --retrieval vector|bm25
+uv run python scripts/eval_foundryiq_t2_ragbench.py --method pgvector --retrieval hybrid --run-id pgvector-hybrid-pilot50
+```
+
+Uses Foundry embeddings + chat; stores chunks in local `pgvector`. Default retrieval is **BM25 + vector** (RRF). Results under `results/`.

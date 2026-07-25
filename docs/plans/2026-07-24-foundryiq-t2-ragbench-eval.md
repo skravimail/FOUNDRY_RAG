@@ -143,7 +143,10 @@ uv run python scripts/prep_t2_ragbench_pilot.py --subset FinQA --split test --n 
 | Blob path layout | Done | `t2rag/FinQA/{context_id}/{page_*.pdf}` |
 | Manifest | Done | `data/t2_ragbench/blob_manifest.json` |
 | Upload script | Done | `scripts/upload_t2_ragbench_pdfs.py` |
-| Knowledge source + KB | **Next** | Create in Foundry portal (or REST) against Standard Search |
+| Knowledge source | Done | `t2-ragbench-ks` (Azure Blob, Minimal extraction, `text-embedding-3-small`) |
+| Knowledge base | Done | `t2-ragbench-kb` (`gpt-5-mini`, medium reasoning, answer synthesis) |
+| Indexer run | Done | 48/48 success, 0 failed (`t2-ragbench-ks-indexer`) |
+| Smoke retrieve | Done | User **Search Index Data Reader**; index ~120 chunks; Entergy Q cites `finqa_test_ctx_118` / `page_372` |
 
 ```bash
 uv run python scripts/upload_t2_ragbench_pdfs.py
@@ -171,6 +174,19 @@ uv run python scripts/upload_t2_ragbench_pdfs.py
 8. Run indexer; confirm ~48 documents indexed
 
 ### Phase 3 — Eval harness (repo work)
+
+#### Phase 3 status (2026-07-25)
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Loader / metrics / parse | Done | `src/foundry_rag/eval/t2_ragbench/` + `mechanisms/foundryiq_refs.py` |
+| Foundry IQ runner | Done | returns `{answer, ranked_context_ids}` from blob URLs |
+| Oracle runner | Done | gold context → Foundry chat |
+| CLI | Done | `scripts/eval_foundryiq_t2_ragbench.py` |
+| Unit tests | Done | `tests/test_t2_ragbench_metrics.py` |
+| Full pilot (n=50) | Done | `pilot50`: NM=0.66, MRR@3=1.00, R@3=1.00, 0 errors (~11s/q) |
+| Local pgvector path | Done | Docker `pgvector`; index 77 chunks; vector-only `pgvector-pilot50`: NM=0.66, MRR@3=0.92, R@3=0.98 |
+| BM25+vector hybrid | Done | Okapi BM25 + dense RRF; `pgvector-hybrid-pilot50` (see results CSV) |
 
 Extend the existing FoundryIQ path rather than inventing a second stack.
 
