@@ -24,8 +24,8 @@ def _sanitize_index_definition(node: Any) -> Any:
     drop_keys = {
         "purviewEnabled",
         "flightingOptIn",
-        # Module 04's index embeds a hardcoded Azure OpenAI vectorizer URI from
-        # the reference environment; we pass VectorizedQuery vectors ourselves.
+        # Some reference indexes embed a hardcoded Azure OpenAI vectorizer URI;
+        # we pass VectorizedQuery vectors ourselves.
         "vectorizers",
     }
     if isinstance(node, dict):
@@ -66,7 +66,7 @@ def _flatten_starship(doc: dict[str, Any], *, include_notes_vector: bool) -> dic
         "Features": doc.get("Features") or [],
         "OverviewVector": embed_text(overview),
     }
-    # Module 02 index has extra fields; 03+ are leaner.
+    # Module 02 index has optional structured fields (ProductId, specs, Notes).
     if "ProductId" in doc:
         payload["ProductId"] = doc.get("ProductId")
     if "TopSpeed" in specs or "Fuel" in specs:
