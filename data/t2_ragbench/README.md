@@ -38,3 +38,12 @@ uv run python scripts/eval_foundryiq_t2_ragbench.py --method pgvector --retrieva
 ```
 
 Uses Foundry embeddings + chat; stores chunks in local `pgvector`. Default retrieval is **BM25 + vector** (RRF). Results under `results/`.
+
+## Local LanceDB RAG (embedded, no Docker)
+
+```bash
+uv run python scripts/index_t2_ragbench_lancedb.py --reset
+uv run python scripts/eval_foundryiq_t2_ragbench.py --method lancedb --retrieval hybrid --run-id lancedb-hybrid-pilot50
+```
+
+Index lands in `data/t2_ragbench/lancedb/` (gitignored). Same `--retrieval hybrid|vector|bm25` options as pgvector.
