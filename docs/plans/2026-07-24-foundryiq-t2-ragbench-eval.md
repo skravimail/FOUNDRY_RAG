@@ -63,6 +63,24 @@ If agentic retrieval only returns opaque chunk IDs, parse `include_activity=True
 
 ### Phase 0 — Prerequisites (Foundry + Search)
 
+#### Phase 0 status (2026-07-25)
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Subscription | Done | `ab031c7f-87a9-41c0-87af-9c45f5a9d571` (Azure subscription 1) |
+| Foundry project | Done | `https://foundry-rag-resource.services.ai.azure.com/api/projects/foundry-rag` |
+| Chat deployment | Done | `gpt-5-mini` |
+| Embedding deployment | Done | `text-embedding-3-small` |
+| Search for Foundry IQ | Done (endpoint switched) | Use **`foundryiq-knowledge-resource`** (SKU **Standard**, Central US, semantic standard). Not Free-tier `foundry-rag-ai-search-service`. |
+| Knowledge bases on Search | Empty | `GET /knowledgebases` → `[]` — create in Phase 2 |
+| Search managed identity | Done | SystemAssigned `ce1b0fbf-dead-4db0-a480-5be39b359199` |
+| Storage account | Done | `foudryragstorageacct` in `Foundry-Rag-RG` (Central US); container `t2-ragbench` |
+| Search MI → Blob | Done | Storage Blob Data Reader on storage account |
+| Search MI → Foundry | Done | Cognitive Services User on `foundry-rag-resource` |
+| User → Blob upload | Done | Storage Blob Data Contributor for signed-in user |
+| `.env` Foundry + Search + Storage | Done | Points at Standard Search; KB/KS names reserved; storage set |
+| Foundry connection name | Done | Use existing tool connection `foundryiqknowledgerespce44` (Standard Search). |
+
 1. Confirm Foundry project (`FOUNDRY_PROJECT_ENDPOINT`) and deployments:
    - Chat model (KB answer synthesis / agent)
    - Embedding model (vectorizer for knowledge source)
@@ -79,7 +97,26 @@ If agentic retrieval only returns opaque chunk IDs, parse `include_activity=True
 
 **Exit criteria:** playground or one-shot `retrieve_foundryiq`-style call works against an empty/small test KS.
 
+**Remaining Phase 0 actions (need your OK to provision):**
+
+1. Enable system-assigned MI on `foundryiq-knowledge-resource`.
+2. Create storage account + container `t2-ragbench` (recommend `compound-rag-rg-ncus`, Central US to match Search).
+3. RBAC: Search MI → Storage Blob Data Reader; Search MI → Cognitive Services User on `foundry-rag-resource`; user → Search Service Contributor / Index Data Contributor.
+4. Add Foundry project connection to Standard Search (if missing); update `AZURE_AI_SEARCH_CONNECTION_NAME`.
+
 ### Phase 1 — Dataset prep (local)
+
+#### Phase 1 status (2026-07-25)
+
+| Item | Status | Notes |
+|------|--------|-------|
+| FinQA test load | Done | via `datasets` (`G4KMU/t2-ragbench`) |
+| Pilot sample | Done | N=50, seed=42 → 50 questions, **48 unique PDFs** |
+| `pilot.jsonl` / `gold_docs.json` / `oracle_contexts.jsonl` | Done | under `data/t2_ragbench/` |
+| Local PDFs | Done | `data/t2_ragbench/pdfs/FinQA/<context_id>/` (~11 MB) |
+| Prep script | Done | `scripts/prep_t2_ragbench_pilot.py` |
+
+HF PDF layout for FinQA: `data/FinQA/{split}/pdf/...` (not `data/FinQA/pdf/...`).
 
 1. Download `G4KMU/t2-ragbench` (HF `datasets`) + clone PDFs from the dataset repo `data/` tree.
 2. Build a local eval table per subset/split:
@@ -90,7 +127,27 @@ If agentic retrieval only returns opaque chunk IDs, parse `include_activity=True
 
 **Artifacts:** `data/t2_ragbench/pilot.jsonl`, `gold_docs.json`, `oracle_contexts.jsonl`
 
+**Reproduce:**
+
+```bash
+uv run python scripts/prep_t2_ragbench_pilot.py --subset FinQA --split test --n 50 --seed 42
+```
+
 ### Phase 2 — Ingest into Foundry IQ
+
+#### Phase 2 status (2026-07-25)
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Upload pilot PDFs | Done | 48 blobs → `foudryragstorageacct` / `t2-ragbench` |
+| Blob path layout | Done | `t2rag/FinQA/{context_id}/{page_*.pdf}` |
+| Manifest | Done | `data/t2_ragbench/blob_manifest.json` |
+| Upload script | Done | `scripts/upload_t2_ragbench_pdfs.py` |
+| Knowledge source + KB | **Next** | Create in Foundry portal (or REST) against Standard Search |
+
+```bash
+uv run python scripts/upload_t2_ragbench_pdfs.py
+```
 
 1. Upload pilot PDFs to Blob with stable paths/IDs.
 2. In **Foundry (new)** → Knowledge, **or** programmatically:
@@ -101,6 +158,17 @@ If agentic retrieval only returns opaque chunk IDs, parse `include_activity=True
 4. Spot-check portal playground: ask 3 known FinQA questions; confirm citations point at expected PDFs.
 
 **Exit criteria:** citations resolve to `context_id` / filename in harness logs.
+
+**Portal next (Knowledge Source + KB):**
+
+1. Foundry → project `foundry-rag` → **Knowledge** → **Knowledge bases** → **+ New**
+2. Add knowledge source type **Azure Blob (Indexed)**
+3. Storage: `foudryragstorageacct`, container `t2-ragbench`, path prefix optional `t2rag/`
+4. Auth: managed identity
+5. Vectorizer: Foundry embedding deployment `text-embedding-3-small`
+6. Name source `t2-ragbench-ks`, KB `t2-ragbench-kb`
+7. Answer model: `gpt-5-mini`; medium retrieval reasoning effort
+8. Run indexer; confirm ~48 documents indexed
 
 ### Phase 3 — Eval harness (repo work)
 
