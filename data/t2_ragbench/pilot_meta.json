@@ -1,0 +1,17 @@
+{
+  "repo_id": "G4KMU/t2-ragbench",
+  "subset": "FinQA",
+  "split": "test",
+  "n_requested": 50,
+  "n_pilot": 50,
+  "n_unique_docs": 48,
+  "seed": 42,
+  "pdfs_downloaded": 0,
+  "missing_pdfs": [],
+  "artifacts": {
+    "pilot": "data/t2_ragbench/pilot.jsonl",
+    "oracle_contexts": "data/t2_ragbench/oracle_contexts.jsonl",
+    "gold_docs": "data/t2_ragbench/gold_docs.json",
+    "pdfs_dir": "data/t2_ragbench/pdfs/FinQA"
+  }
+}

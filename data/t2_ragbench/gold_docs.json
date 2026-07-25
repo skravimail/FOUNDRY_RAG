@@ -1,0 +1,532 @@
+[
+  {
+    "context_id": "finqa_test_ctx_118",
+    "file_name": "pdf/ETR/2017/page_372.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/ETR/2017/page_372.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_118/page_372.pdf",
+    "question_ids": [
+      "finqa_test_17"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_250",
+    "file_name": "pdf/AMT/2016/page_49.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/AMT/2016/page_49.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_250/page_49.pdf",
+    "question_ids": [
+      "finqa_test_22"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_178",
+    "file_name": "pdf/JPM/2018/page_90.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/JPM/2018/page_90.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_178/page_90.pdf",
+    "question_ids": [
+      "finqa_test_33"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_155",
+    "file_name": "pdf/PNC/2012/page_65.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/PNC/2012/page_65.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_155/page_65.pdf",
+    "question_ids": [
+      "finqa_test_48"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_23",
+    "file_name": "pdf/SNA/2018/page_31.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/SNA/2018/page_31.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_23/page_31.pdf",
+    "question_ids": [
+      "finqa_test_49"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_331",
+    "file_name": "pdf/MRO/2007/page_136.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/MRO/2007/page_136.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_331/page_136.pdf",
+    "question_ids": [
+      "finqa_test_81"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_133",
+    "file_name": "pdf/NCLH/2018/page_64.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/NCLH/2018/page_64.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_133/page_64.pdf",
+    "question_ids": [
+      "finqa_test_117"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_256",
+    "file_name": "pdf/CME/2017/page_40.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/CME/2017/page_40.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_256/page_40.pdf",
+    "question_ids": [
+      "finqa_test_148"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_251",
+    "file_name": "pdf/AES/2001/page_33.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/AES/2001/page_33.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_251/page_33.pdf",
+    "question_ids": [
+      "finqa_test_193"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_161",
+    "file_name": "pdf/AMT/2007/page_29.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/AMT/2007/page_29.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_161/page_29.pdf",
+    "question_ids": [
+      "finqa_test_213"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_42",
+    "file_name": "pdf/STT/2009/page_25.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/STT/2009/page_25.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_42/page_25.pdf",
+    "question_ids": [
+      "finqa_test_231"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_110",
+    "file_name": "pdf/ETR/2016/page_23.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/ETR/2016/page_23.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_110/page_23.pdf",
+    "question_ids": [
+      "finqa_test_241"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_52",
+    "file_name": "pdf/AMT/2014/page_160.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/AMT/2014/page_160.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_52/page_160.pdf",
+    "question_ids": [
+      "finqa_test_256"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_296",
+    "file_name": "pdf/DISCA/2011/page_49.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/DISCA/2011/page_49.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_296/page_49.pdf",
+    "question_ids": [
+      "finqa_test_261"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_12",
+    "file_name": "pdf/SLG/2001/page_48.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/SLG/2001/page_48.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_12/page_48.pdf",
+    "question_ids": [
+      "finqa_test_266"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_210",
+    "file_name": "pdf/IPG/2008/page_72.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/IPG/2008/page_72.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_210/page_72.pdf",
+    "question_ids": [
+      "finqa_test_269",
+      "finqa_test_853"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_45",
+    "file_name": "pdf/ADBE/1999/page_64.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/ADBE/1999/page_64.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_45/page_64.pdf",
+    "question_ids": [
+      "finqa_test_301"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_328",
+    "file_name": "pdf/LKQ/2016/page_87.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/LKQ/2016/page_87.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_328/page_87.pdf",
+    "question_ids": [
+      "finqa_test_337"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_47",
+    "file_name": "pdf/CME/2017/page_89.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/CME/2017/page_89.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_47/page_89.pdf",
+    "question_ids": [
+      "finqa_test_361"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_300",
+    "file_name": "pdf/CDNS/2015/page_30.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/CDNS/2015/page_30.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_300/page_30.pdf",
+    "question_ids": [
+      "finqa_test_375"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_134",
+    "file_name": "pdf/GPN/2013/page_92.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/GPN/2013/page_92.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_134/page_92.pdf",
+    "question_ids": [
+      "finqa_test_404"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_373",
+    "file_name": "pdf/STT/2011/page_69.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/STT/2011/page_69.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_373/page_69.pdf",
+    "question_ids": [
+      "finqa_test_439",
+      "finqa_test_744"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_7",
+    "file_name": "pdf/AMAT/2018/page_33.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/AMAT/2018/page_33.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_7/page_33.pdf",
+    "question_ids": [
+      "finqa_test_482"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_303",
+    "file_name": "pdf/MRO/2004/page_125.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/MRO/2004/page_125.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_303/page_125.pdf",
+    "question_ids": [
+      "finqa_test_612"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_247",
+    "file_name": "pdf/MRK/2013/page_3.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/MRK/2013/page_3.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_247/page_3.pdf",
+    "question_ids": [
+      "finqa_test_653"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_272",
+    "file_name": "pdf/RSG/2012/page_93.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/RSG/2012/page_93.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_272/page_93.pdf",
+    "question_ids": [
+      "finqa_test_671"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_194",
+    "file_name": "pdf/CB/2008/page_229.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/CB/2008/page_229.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_194/page_229.pdf",
+    "question_ids": [
+      "finqa_test_676"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_204",
+    "file_name": "pdf/HIG/2004/page_140.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/HIG/2004/page_140.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_204/page_140.pdf",
+    "question_ids": [
+      "finqa_test_681"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_214",
+    "file_name": "pdf/GS/2012/page_189.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/GS/2012/page_189.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_214/page_189.pdf",
+    "question_ids": [
+      "finqa_test_697"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_202",
+    "file_name": "pdf/LMT/2012/page_73.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/LMT/2012/page_73.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_202/page_73.pdf",
+    "question_ids": [
+      "finqa_test_783"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_48",
+    "file_name": "pdf/AAL/2013/page_18.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/AAL/2013/page_18.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_48/page_18.pdf",
+    "question_ids": [
+      "finqa_test_800"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_333",
+    "file_name": "pdf/GPN/2014/page_92.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/GPN/2014/page_92.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_333/page_92.pdf",
+    "question_ids": [
+      "finqa_test_834"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_223",
+    "file_name": "pdf/AON/2007/page_175.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/AON/2007/page_175.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_223/page_175.pdf",
+    "question_ids": [
+      "finqa_test_858"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_79",
+    "file_name": "pdf/BLK/2015/page_124.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/BLK/2015/page_124.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_79/page_124.pdf",
+    "question_ids": [
+      "finqa_test_861"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_230",
+    "file_name": "pdf/MSI/2007/page_70.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/MSI/2007/page_70.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_230/page_70.pdf",
+    "question_ids": [
+      "finqa_test_885"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_245",
+    "file_name": "pdf/BLL/2006/page_67.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/BLL/2006/page_67.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_245/page_67.pdf",
+    "question_ids": [
+      "finqa_test_907"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_354",
+    "file_name": "pdf/PNC/2012/page_174.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/PNC/2012/page_174.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_354/page_174.pdf",
+    "question_ids": [
+      "finqa_test_908"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_119",
+    "file_name": "pdf/ETR/2004/page_239.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/ETR/2004/page_239.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_119/page_239.pdf",
+    "question_ids": [
+      "finqa_test_914"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_372",
+    "file_name": "pdf/WRK/2018/page_107.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/WRK/2018/page_107.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_372/page_107.pdf",
+    "question_ids": [
+      "finqa_test_947"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_195",
+    "file_name": "pdf/UNP/2011/page_24.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/UNP/2011/page_24.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_195/page_24.pdf",
+    "question_ids": [
+      "finqa_test_965"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_209",
+    "file_name": "pdf/IPG/2017/page_92.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/IPG/2017/page_92.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_209/page_92.pdf",
+    "question_ids": [
+      "finqa_test_993"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_56",
+    "file_name": "pdf/AMT/2007/page_127.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/AMT/2007/page_127.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_56/page_127.pdf",
+    "question_ids": [
+      "finqa_test_1005"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_308",
+    "file_name": "pdf/CDW/2015/page_70.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/CDW/2015/page_70.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_308/page_70.pdf",
+    "question_ids": [
+      "finqa_test_1011"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_334",
+    "file_name": "pdf/AWK/2017/page_148.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/AWK/2017/page_148.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_334/page_148.pdf",
+    "question_ids": [
+      "finqa_test_1013"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_29",
+    "file_name": "pdf/BKR/2017/page_56.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/BKR/2017/page_56.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_29/page_56.pdf",
+    "question_ids": [
+      "finqa_test_1020"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_152",
+    "file_name": "pdf/LMT/2014/page_77.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/LMT/2014/page_77.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_152/page_77.pdf",
+    "question_ids": [
+      "finqa_test_1042"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_88",
+    "file_name": "pdf/IP/2009/page_45.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/IP/2009/page_45.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_88/page_45.pdf",
+    "question_ids": [
+      "finqa_test_1087"
+    ]
+  },
+  {
+    "context_id": "finqa_test_ctx_20",
+    "file_name": "pdf/PPG/2012/page_29.pdf",
+    "subset": "FinQA",
+    "split": "test",
+    "hf_path": "data/FinQA/test/pdf/PPG/2012/page_29.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_20/page_29.pdf",
+    "question_ids": [
+      "finqa_test_1104"
+    ]
+  }
+]

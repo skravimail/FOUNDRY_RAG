@@ -1,0 +1,338 @@
+[
+  {
+    "context_id": "finqa_test_ctx_118",
+    "subset": "FinQA",
+    "file_name": "pdf/ETR/2017/page_372.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_118/page_372.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_118/page_372.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_250",
+    "subset": "FinQA",
+    "file_name": "pdf/AMT/2016/page_49.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_250/page_49.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_250/page_49.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_178",
+    "subset": "FinQA",
+    "file_name": "pdf/JPM/2018/page_90.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_178/page_90.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_178/page_90.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_155",
+    "subset": "FinQA",
+    "file_name": "pdf/PNC/2012/page_65.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_155/page_65.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_155/page_65.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_23",
+    "subset": "FinQA",
+    "file_name": "pdf/SNA/2018/page_31.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_23/page_31.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_23/page_31.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_331",
+    "subset": "FinQA",
+    "file_name": "pdf/MRO/2007/page_136.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_331/page_136.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_331/page_136.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_133",
+    "subset": "FinQA",
+    "file_name": "pdf/NCLH/2018/page_64.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_133/page_64.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_133/page_64.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_256",
+    "subset": "FinQA",
+    "file_name": "pdf/CME/2017/page_40.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_256/page_40.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_256/page_40.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_251",
+    "subset": "FinQA",
+    "file_name": "pdf/AES/2001/page_33.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_251/page_33.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_251/page_33.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_161",
+    "subset": "FinQA",
+    "file_name": "pdf/AMT/2007/page_29.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_161/page_29.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_161/page_29.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_42",
+    "subset": "FinQA",
+    "file_name": "pdf/STT/2009/page_25.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_42/page_25.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_42/page_25.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_110",
+    "subset": "FinQA",
+    "file_name": "pdf/ETR/2016/page_23.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_110/page_23.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_110/page_23.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_52",
+    "subset": "FinQA",
+    "file_name": "pdf/AMT/2014/page_160.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_52/page_160.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_52/page_160.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_296",
+    "subset": "FinQA",
+    "file_name": "pdf/DISCA/2011/page_49.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_296/page_49.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_296/page_49.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_12",
+    "subset": "FinQA",
+    "file_name": "pdf/SLG/2001/page_48.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_12/page_48.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_12/page_48.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_210",
+    "subset": "FinQA",
+    "file_name": "pdf/IPG/2008/page_72.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_210/page_72.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_210/page_72.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_45",
+    "subset": "FinQA",
+    "file_name": "pdf/ADBE/1999/page_64.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_45/page_64.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_45/page_64.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_328",
+    "subset": "FinQA",
+    "file_name": "pdf/LKQ/2016/page_87.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_328/page_87.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_328/page_87.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_47",
+    "subset": "FinQA",
+    "file_name": "pdf/CME/2017/page_89.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_47/page_89.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_47/page_89.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_300",
+    "subset": "FinQA",
+    "file_name": "pdf/CDNS/2015/page_30.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_300/page_30.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_300/page_30.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_134",
+    "subset": "FinQA",
+    "file_name": "pdf/GPN/2013/page_92.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_134/page_92.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_134/page_92.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_373",
+    "subset": "FinQA",
+    "file_name": "pdf/STT/2011/page_69.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_373/page_69.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_373/page_69.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_7",
+    "subset": "FinQA",
+    "file_name": "pdf/AMAT/2018/page_33.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_7/page_33.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_7/page_33.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_303",
+    "subset": "FinQA",
+    "file_name": "pdf/MRO/2004/page_125.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_303/page_125.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_303/page_125.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_247",
+    "subset": "FinQA",
+    "file_name": "pdf/MRK/2013/page_3.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_247/page_3.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_247/page_3.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_272",
+    "subset": "FinQA",
+    "file_name": "pdf/RSG/2012/page_93.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_272/page_93.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_272/page_93.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_194",
+    "subset": "FinQA",
+    "file_name": "pdf/CB/2008/page_229.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_194/page_229.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_194/page_229.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_204",
+    "subset": "FinQA",
+    "file_name": "pdf/HIG/2004/page_140.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_204/page_140.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_204/page_140.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_214",
+    "subset": "FinQA",
+    "file_name": "pdf/GS/2012/page_189.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_214/page_189.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_214/page_189.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_202",
+    "subset": "FinQA",
+    "file_name": "pdf/LMT/2012/page_73.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_202/page_73.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_202/page_73.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_48",
+    "subset": "FinQA",
+    "file_name": "pdf/AAL/2013/page_18.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_48/page_18.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_48/page_18.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_333",
+    "subset": "FinQA",
+    "file_name": "pdf/GPN/2014/page_92.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_333/page_92.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_333/page_92.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_223",
+    "subset": "FinQA",
+    "file_name": "pdf/AON/2007/page_175.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_223/page_175.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_223/page_175.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_79",
+    "subset": "FinQA",
+    "file_name": "pdf/BLK/2015/page_124.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_79/page_124.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_79/page_124.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_230",
+    "subset": "FinQA",
+    "file_name": "pdf/MSI/2007/page_70.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_230/page_70.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_230/page_70.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_245",
+    "subset": "FinQA",
+    "file_name": "pdf/BLL/2006/page_67.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_245/page_67.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_245/page_67.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_354",
+    "subset": "FinQA",
+    "file_name": "pdf/PNC/2012/page_174.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_354/page_174.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_354/page_174.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_119",
+    "subset": "FinQA",
+    "file_name": "pdf/ETR/2004/page_239.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_119/page_239.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_119/page_239.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_372",
+    "subset": "FinQA",
+    "file_name": "pdf/WRK/2018/page_107.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_372/page_107.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_372/page_107.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_195",
+    "subset": "FinQA",
+    "file_name": "pdf/UNP/2011/page_24.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_195/page_24.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_195/page_24.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_209",
+    "subset": "FinQA",
+    "file_name": "pdf/IPG/2017/page_92.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_209/page_92.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_209/page_92.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_56",
+    "subset": "FinQA",
+    "file_name": "pdf/AMT/2007/page_127.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_56/page_127.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_56/page_127.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_308",
+    "subset": "FinQA",
+    "file_name": "pdf/CDW/2015/page_70.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_308/page_70.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_308/page_70.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_334",
+    "subset": "FinQA",
+    "file_name": "pdf/AWK/2017/page_148.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_334/page_148.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_334/page_148.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_29",
+    "subset": "FinQA",
+    "file_name": "pdf/BKR/2017/page_56.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_29/page_56.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_29/page_56.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_152",
+    "subset": "FinQA",
+    "file_name": "pdf/LMT/2014/page_77.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_152/page_77.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_152/page_77.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_88",
+    "subset": "FinQA",
+    "file_name": "pdf/IP/2009/page_45.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_88/page_45.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_88/page_45.pdf"
+  },
+  {
+    "context_id": "finqa_test_ctx_20",
+    "subset": "FinQA",
+    "file_name": "pdf/PPG/2012/page_29.pdf",
+    "blob_name": "t2rag/FinQA/finqa_test_ctx_20/page_29.pdf",
+    "local_path": "data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_20/page_29.pdf"
+  }
+]

@@ -36,3 +36,6 @@ htmlcov/
 
 # Local clone of reference repo (Phase 2 fetch)
 .ref-rag/
+
+# Hugging Face cache (if ever written under the repo)
+.cache/
