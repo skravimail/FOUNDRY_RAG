@@ -1,0 +1,2 @@
+subset,NM,MRR@3,R@3,n,model,method,run_id
+FinQA,0.7200,0.9200,0.9600,50,gpt-4.1-mini,Postgres / pgvector (BM25+vector),pgvector-hybrid-gpt41mini-pilot50

@@ -1,0 +1,2 @@
+subset,NM,MRR@3,R@3,n,model,method,run_id
+FinQA,0.6600,0.9233,0.9800,50,gpt-5-mini,Azure AI Search (vector),azure-search-vector-pilot50
