@@ -1,0 +1,65 @@
+T²-RAGBench eval run_id=foundryiq-basic-kb-pilot50 n=50 methods=['foundryiq'] 
+retrieval=hybrid
+results → 
+/Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/results/foundryiq-basic-kb-pilot
+50.jsonl
+[1/50] OK foundryiq finqa_test_17 NM=True MRR=1.00 R=1 13.4s
+[2/50] OK foundryiq finqa_test_22 NM=False MRR=1.00 R=1 13.0s
+[3/50] OK foundryiq finqa_test_33 NM=True MRR=1.00 R=1 13.4s
+[4/50] OK foundryiq finqa_test_48 NM=True MRR=1.00 R=1 12.6s
+[5/50] OK foundryiq finqa_test_49 NM=True MRR=1.00 R=1 15.6s
+[6/50] OK foundryiq finqa_test_81 NM=False MRR=1.00 R=1 11.9s
+[7/50] OK foundryiq finqa_test_117 NM=True MRR=1.00 R=1 13.1s
+[8/50] OK foundryiq finqa_test_148 NM=True MRR=1.00 R=1 23.6s
+[9/50] OK foundryiq finqa_test_193 NM=True MRR=1.00 R=1 10.9s
+[10/50] OK foundryiq finqa_test_213 NM=False MRR=1.00 R=1 10.7s
+[11/50] OK foundryiq finqa_test_231 NM=False MRR=1.00 R=1 14.2s
+[12/50] OK foundryiq finqa_test_241 NM=False MRR=1.00 R=1 17.0s
+[13/50] OK foundryiq finqa_test_256 NM=True MRR=1.00 R=1 16.0s
+[14/50] OK foundryiq finqa_test_261 NM=True MRR=1.00 R=1 16.5s
+[15/50] OK foundryiq finqa_test_266 NM=True MRR=1.00 R=1 13.8s
+[16/50] OK foundryiq finqa_test_269 NM=True MRR=1.00 R=1 13.6s
+[17/50] OK foundryiq finqa_test_301 NM=True MRR=1.00 R=1 11.4s
+[18/50] OK foundryiq finqa_test_337 NM=False MRR=1.00 R=1 13.8s
+[19/50] OK foundryiq finqa_test_361 NM=False MRR=1.00 R=1 15.0s
+[20/50] OK foundryiq finqa_test_375 NM=True MRR=1.00 R=1 15.3s
+[21/50] OK foundryiq finqa_test_404 NM=True MRR=1.00 R=1 14.0s
+[22/50] OK foundryiq finqa_test_439 NM=True MRR=1.00 R=1 15.5s
+[23/50] OK foundryiq finqa_test_482 NM=True MRR=1.00 R=1 14.2s
+[24/50] OK foundryiq finqa_test_612 NM=True MRR=1.00 R=1 12.0s
+[25/50] OK foundryiq finqa_test_653 NM=False MRR=1.00 R=1 12.6s
+[26/50] OK foundryiq finqa_test_671 NM=True MRR=1.00 R=1 14.2s
+[27/50] OK foundryiq finqa_test_676 NM=True MRR=1.00 R=1 10.8s
+[28/50] OK foundryiq finqa_test_681 NM=False MRR=1.00 R=1 15.0s
+[29/50] OK foundryiq finqa_test_697 NM=True MRR=1.00 R=1 11.5s
+[30/50] OK foundryiq finqa_test_744 NM=True MRR=1.00 R=1 9.6s
+[31/50] OK foundryiq finqa_test_783 NM=False MRR=1.00 R=1 16.7s
+[32/50] OK foundryiq finqa_test_800 NM=True MRR=1.00 R=1 12.3s
+[33/50] OK foundryiq finqa_test_834 NM=False MRR=1.00 R=1 12.5s
+[34/50] OK foundryiq finqa_test_853 NM=True MRR=1.00 R=1 12.0s
+[35/50] OK foundryiq finqa_test_858 NM=False MRR=1.00 R=1 11.6s
+[36/50] OK foundryiq finqa_test_861 NM=False MRR=1.00 R=1 12.6s
+[37/50] OK foundryiq finqa_test_885 NM=False MRR=1.00 R=1 12.9s
+[38/50] OK foundryiq finqa_test_907 NM=False MRR=1.00 R=1 12.0s
+[39/50] OK foundryiq finqa_test_908 NM=True MRR=1.00 R=1 13.4s
+[40/50] OK foundryiq finqa_test_914 NM=True MRR=1.00 R=1 12.9s
+[41/50] OK foundryiq finqa_test_947 NM=False MRR=1.00 R=1 14.7s
+[42/50] OK foundryiq finqa_test_965 NM=True MRR=1.00 R=1 14.0s
+[43/50] OK foundryiq finqa_test_993 NM=True MRR=1.00 R=1 12.7s
+[44/50] OK foundryiq finqa_test_1005 NM=True MRR=1.00 R=1 15.5s
+[45/50] OK foundryiq finqa_test_1011 NM=False MRR=1.00 R=1 15.2s
+[46/50] OK foundryiq finqa_test_1013 NM=True MRR=1.00 R=1 13.4s
+[47/50] OK foundryiq finqa_test_1020 NM=True MRR=1.00 R=1 14.5s
+[48/50] OK foundryiq finqa_test_1042 NM=False MRR=1.00 R=1 12.3s
+[49/50] OK foundryiq finqa_test_1087 NM=True MRR=1.00 R=1 15.3s
+[50/50] OK foundryiq finqa_test_1104 NM=True MRR=1.00 R=1 16.3s
+                T²-RAGBench summary (foundryiq-basic-kb-pilot50)                
+┏━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━┓
+┃ subset ┃ method                    ┃ n  ┃ NM    ┃ MRR@3 ┃ R@3   ┃ model      ┃
+┡━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━┩
+│ FinQA  │ FoundryIQ / Knowledge     │ 50 │ 0.640 │ 1.000 │ 1.000 │ gpt-5-mini │
+│        │ Base                      │    │       │       │       │            │
+└────────┴───────────────────────────┴────┴───────┴───────┴───────┴────────────┘
+wrote 
+/Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/results/foundryiq-basic-kb-pilot
+50.summary.csv (errors=0)
