@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Any
 
 from foundry_rag.eval.t2_ragbench.parse import extract_answer_text, ranked_context_ids_from_result
+from foundry_rag.eval.t2_ragbench.azure_search_runner import METHOD_NAME as AZURE_SEARCH_METHOD
+from foundry_rag.eval.t2_ragbench.azure_search_runner import run_azure_search
 from foundry_rag.eval.t2_ragbench.lancedb_runner import METHOD_NAME as LANCEDB_METHOD
 from foundry_rag.eval.t2_ragbench.lancedb_runner import run_lancedb
 from foundry_rag.eval.t2_ragbench.pgvector_runner import METHOD_NAME as PGVECTOR_METHOD
@@ -13,8 +15,10 @@ from foundry_rag.llm import chat_complete
 from foundry_rag.mechanisms.foundryiq import retrieve_foundryiq
 
 __all__ = [
+    "AZURE_SEARCH_METHOD",
     "LANCEDB_METHOD",
     "PGVECTOR_METHOD",
+    "run_azure_search",
     "run_foundryiq",
     "run_lancedb",
     "run_oracle",

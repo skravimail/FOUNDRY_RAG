@@ -47,3 +47,14 @@ uv run python scripts/eval_foundryiq_t2_ragbench.py --method lancedb --retrieval
 ```
 
 Index lands in `data/t2_ragbench/lancedb/` (gitignored). Same `--retrieval hybrid|vector|bm25` options as pgvector.
+
+## Azure AI Search hybrid RAG (Basic)
+
+```bash
+# Requires AZURE_AI_SEARCH_ENDPOINT → Basic service (e.g. foundryiq-search-basic)
+uv run python scripts/index_t2_ragbench_azure_search.py --reset
+uv run python scripts/eval_foundryiq_t2_ragbench.py \
+  --method azure_search --retrieval hybrid --run-id azure-search-hybrid-pilot50
+```
+
+Uses the same chunking/embeddings as local stores; hybrid fusion is Azure Search RRF (`search_text` + `VectorizedQuery`). Index name defaults to `t2-ragbench-chunks` (`T2_AZURE_SEARCH_INDEX`).

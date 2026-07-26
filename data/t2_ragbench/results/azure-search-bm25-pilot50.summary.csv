@@ -1,0 +1,2 @@
+subset,NM,MRR@3,R@3,n,model,method,run_id
+FinQA,0.7200,0.9433,1.0000,50,gpt-5-mini,Azure AI Search (BM25),azure-search-bm25-pilot50

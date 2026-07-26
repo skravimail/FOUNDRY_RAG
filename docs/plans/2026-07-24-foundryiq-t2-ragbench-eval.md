@@ -1,61 +1,70 @@
-# Plan: Evaluate Foundry IQ on T²-RAGBench (NM + MRR@3)
+# Plan: T²-RAGBench eval (Foundry IQ deferred; local Postgres/LanceDB done)
 
-**Date:** 2026-07-24  
-**Goal:** Run Foundry IQ (agentic Knowledge Base retrieval) against [T²-RAGBench](https://huggingface.co/datasets/G4KMU/t2-ragbench) and produce leaderboard-comparable **Number Match (NM)** and **MRR@3** (plus R@3), using Microsoft Foundry + Azure AI Search.
+**Date:** 2026-07-24 (updated 2026-07-25)  
+**Goal:** Produce leaderboard-comparable **Number Match (NM)** and **MRR@3** (plus R@3) on [T²-RAGBench](https://huggingface.co/datasets/G4KMU/t2-ragbench) using Microsoft Foundry embeddings + chat.
+
+**Current direction (2026-07-25):**
+
+| Track | Status | Notes |
+|-------|--------|-------|
+| **Local Postgres / pgvector** | **Done (pilot)** | Docker; BM25+vector RRF; FinQA n=50 |
+| **Local LanceDB** | **Done (pilot)** | Embedded; BM25+vector RRF; FinQA n=50 |
+| **Azure AI Search hybrid (Basic)** | **Done (pilot)** | Direct hybrid index (not Foundry IQ KB); FinQA n=50 |
+| **Foundry IQ / Azure AI Search KB** | **Deferred** | Needs Standard Search; Basic used for direct hybrid only |
+
+---
 
 ## Problem frame
 
-Your existing FoundryIQ module (`src/foundry_rag/mechanisms/foundryiq.py`) calls a provisioned Knowledge Base via `KnowledgeBaseRetrievalClient` with `ANSWER_SYNTHESIS`. It does **not** yet:
+T²-RAGBench scoring needs custom **NM** (ε=1e−2) and **MRR@3 / R@3** — Foundry built-in evaluators do not replace these.
 
-1. Ingest T²-RAGBench PDFs / contexts into a Knowledge Source  
-2. Map retrieval citations back to gold `context_id` / `file_name`  
-3. Score answers with T²-RAGBench **Number Match** (ε = 1e−2)  
-4. Produce a leaderboard-style table (per subset NM, MRR@3, weighted avg)
+**Foundry IQ path** (`foundryiq.py` → Knowledge Base `ANSWER_SYNTHESIS`) was proven on a 50-question pilot, then **deferred** because Standard Azure AI Search (~$7–8/day) dominates cost vs token spend.
 
-Built-in Foundry evaluators (Groundedness, Document Retrieval / NDCG) are useful **add-ons**, but they do **not** replace T²-RAGBench NM / MRR@3. Custom scoring is required for leaderboard parity.
+**Active path:** local vector stores (pgvector / LanceDB) + Foundry `text-embedding-3-small` + `gpt-5-mini` for answer generation.
+
+---
 
 ## Recommended architecture
 
+### A) Local stores (active)
+
 ```mermaid
 flowchart LR
-  HF[T2-RAGBench HF dataset + PDFs] --> Prep[Local prep: IDs, gold map, pilot split]
-  Prep --> Blob[Azure Blob: PDFs named by context_id]
-  Blob --> KS[AI Search Knowledge Source]
-  KS --> KB[Knowledge Base / Foundry IQ]
-  KB --> Harness[Python eval harness]
+  HF[T2-RAGBench pilot PDFs] --> Prep[Local prep + chunk + embed]
+  Prep --> PG[(Postgres / pgvector)]
+  Prep --> Lance[(LanceDB)]
+  PG --> Harness[Eval CLI]
+  Lance --> Harness
   Prep --> Harness
-  Harness --> Metrics[NM, MRR@3, R@3 CSV + summary]
-  Harness --> Optional[Optional: Foundry Evaluation Groundedness]
+  Harness --> Metrics[NM, MRR@3, R@3]
 ```
 
-**Query path (system under test):** Foundry IQ Knowledge Base retrieve (`ANSWER_SYNTHESIS`) — same pattern as `retrieve_foundryiq`.  
-**Optional path:** Foundry Agent + Knowledge Base tool (portal playground / Agent Service) — same KB underneath; keep primary scoring against the KB API for reproducibility.
+Retrieval modes: `vector` | `bm25` | `hybrid` (Okapi BM25 + dense cosine, RRF).
 
-**Language:** Python (matches this repo).  
-**Auth:** `DefaultAzureCredential` / managed identity (no keys in code).
+### B) Foundry IQ (deferred)
+
+```mermaid
+flowchart LR
+  HF[T2-RAGBench PDFs] --> Blob[Azure Blob]
+  Blob --> KS[AI Search Knowledge Source]
+  KS --> KB[Knowledge Base / Foundry IQ]
+  KB --> Harness[Eval CLI]
+```
+
+**To resume Foundry IQ:** recreate Standard Search → re-index Blob KS → set `.env` KB/KS → `--method foundryiq`.
+
+---
 
 ## Key design decisions
 
 | Decision | Recommendation | Why |
 |----------|-----------------|-----|
-| Corpus form | **PDFs in Blob** (primary); extracted `context` JSON as optional ablation | Matches real Foundry IQ doc RAG; T²-RAGBench ships PDFs |
-| Document identity | Blob path / metadata = stable `context_id` or `file_name` | Required to compute MRR@3 against gold |
-| Eval metrics | **Custom NM + MRR@3 + R@3** first; Foundry evaluators second | Leaderboard parity |
-| Scope (phase 1) | **Pilot:** FinQA `test` sample (e.g. 50–100 Qs) | Cost/latency control before full ~23k |
-| Oracle baseline | Same generator model with gold `context` injected | Separates retrieval vs reasoning ceiling |
-| Generator | Foundry chat deployment used by KB answer synthesis (or explicit agent model) | Must be recorded on results for fair comparison |
-
-### Critical risk: citation → gold ID mapping
-
-MRR@3 only works if each retrieved chunk/citation can be mapped to a gold document ID.
-
-**Plan requirement:** when uploading blobs, use deterministic names, e.g.:
-
-`t2rag/{subset}/{context_id}/{file_name}.pdf`
-
-and ensure Knowledge Source / index preserves `metadata_storage_path` or a custom `context_id` field. The harness then maps citation URLs / source refs → `context_id`.
-
-If agentic retrieval only returns opaque chunk IDs, parse `include_activity=True` activity traces and/or index `metadata_storage_name` — validate this on the 50-question pilot before scaling.
+| Active SUT | **pgvector / LanceDB hybrid** | Cheap, stoppable, leaderboard metrics without Search S1 |
+| Foundry IQ | **Deferred** after pilot | Search SKU cost, not model tokens |
+| Corpus form | Pilot PDFs → extract text → chunks | Same PDFs for all methods |
+| Document identity | `context_id` on chunks / blob path | MRR@3 |
+| Embeddings / chat | Foundry `text-embedding-3-small` + `gpt-5-mini` | Shared generator across methods |
+| Scope | FinQA `test` pilot N=50 (seed 42) | Done; full corpus = later |
 
 ---
 
@@ -67,170 +76,114 @@ If agentic retrieval only returns opaque chunk IDs, parse `include_activity=True
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Subscription | Done | `ab031c7f-87a9-41c0-87af-9c45f5a9d571` (Azure subscription 1) |
-| Foundry project | Done | `https://foundry-rag-resource.services.ai.azure.com/api/projects/foundry-rag` |
-| Chat deployment | Done | `gpt-5-mini` |
-| Embedding deployment | Done | `text-embedding-3-small` |
-| Search for Foundry IQ | Done (endpoint switched) | Use **`foundryiq-knowledge-resource`** (SKU **Standard**, Central US, semantic standard). Not Free-tier `foundry-rag-ai-search-service`. |
-| Knowledge bases on Search | Empty | `GET /knowledgebases` → `[]` — create in Phase 2 |
-| Search managed identity | Done | SystemAssigned `ce1b0fbf-dead-4db0-a480-5be39b359199` |
-| Storage account | Done | `foudryragstorageacct` in `Foundry-Rag-RG` (Central US); container `t2-ragbench` |
-| Search MI → Blob | Done | Storage Blob Data Reader on storage account |
-| Search MI → Foundry | Done | Cognitive Services User on `foundry-rag-resource` |
-| User → Blob upload | Done | Storage Blob Data Contributor for signed-in user |
-| `.env` Foundry + Search + Storage | Done | Points at Standard Search; KB/KS names reserved; storage set |
-| Foundry connection name | Done | Use existing tool connection `foundryiqknowledgerespce44` (Standard Search). |
+| Subscription | Done | `ab031c7f-87a9-41c0-87af-9c45f5a9d571` |
+| Foundry project | Done | `foundry-rag` / `gpt-5-mini` / `text-embedding-3-small` |
+| Storage + pilot Blob upload | Done | `foudryragstorageacct` / `t2-ragbench` |
+| Standard Search for Foundry IQ | **Torn down** | `foundryiq-knowledge-resource` deleted 2026-07-25 (cost) |
+| Basic Search (direct hybrid) | **Running** | `foundryiq-search-basic` / North Central US / ~$74/mo per SU |
+| Free Search | Optional / unused | Not used for T² pilot |
 
-1. Confirm Foundry project (`FOUNDRY_PROJECT_ENDPOINT`) and deployments:
-   - Chat model (KB answer synthesis / agent)
-   - Embedding model (vectorizer for knowledge source)
-2. Confirm Azure AI Search service that supports **agentic retrieval / Knowledge Bases** (`AZURE_AI_SEARCH_ENDPOINT`).
-3. Storage account + container for T²-RAGBench PDFs.
-4. RBAC (managed identity preferred):
-   - Search → Blob (read)
-   - Search → Foundry embeddings
-   - Your principal / harness → Search Knowledge Base retrieve
-   - Harness → Blob (upload)
-5. Set env (extend `.env` from `.env.example`):
-   - `AZURE_AI_SEARCH_KNOWLEDGE_BASE=t2-ragbench-kb` (new)
-   - knowledge source name(s) for T² corpus
-
-**Exit criteria:** playground or one-shot `retrieve_foundryiq`-style call works against an empty/small test KS.
-
-**Remaining Phase 0 actions (need your OK to provision):**
-
-1. Enable system-assigned MI on `foundryiq-knowledge-resource`.
-2. Create storage account + container `t2-ragbench` (recommend `compound-rag-rg-ncus`, Central US to match Search).
-3. RBAC: Search MI → Storage Blob Data Reader; Search MI → Cognitive Services User on `foundry-rag-resource`; user → Search Service Contributor / Index Data Contributor.
-4. Add Foundry project connection to Standard Search (if missing); update `AZURE_AI_SEARCH_CONNECTION_NAME`.
-
-### Phase 1 — Dataset prep (local)
-
-#### Phase 1 status (2026-07-25)
+### Phase 1 — Dataset prep (local) — **Done**
 
 | Item | Status | Notes |
 |------|--------|-------|
-| FinQA test load | Done | via `datasets` (`G4KMU/t2-ragbench`) |
-| Pilot sample | Done | N=50, seed=42 → 50 questions, **48 unique PDFs** |
-| `pilot.jsonl` / `gold_docs.json` / `oracle_contexts.jsonl` | Done | under `data/t2_ragbench/` |
-| Local PDFs | Done | `data/t2_ragbench/pdfs/FinQA/<context_id>/` (~11 MB) |
+| Pilot N=50 FinQA test | Done | seed 42; 48 unique PDFs |
+| Artifacts | Done | `data/t2_ragbench/pilot.jsonl`, `gold_docs.json`, `oracle_contexts.jsonl`, `pdfs/` |
 | Prep script | Done | `scripts/prep_t2_ragbench_pilot.py` |
 
-HF PDF layout for FinQA: `data/FinQA/{split}/pdf/...` (not `data/FinQA/pdf/...`).
-
-1. Download `G4KMU/t2-ragbench` (HF `datasets`) + clone PDFs from the dataset repo `data/` tree.
-2. Build a local eval table per subset/split:
-   - `id`, `question`, `program_answer`, `context_id`, `file_name`, `subset`, `split`
-3. Build gold retrieval map: `question_id → context_id` (and optional `file_name`).
-4. Choose pilot set: FinQA `test`, stratified sample (start **N=50**, then 200, then full test).
-5. Optional Oracle table: same questions + gold `context` text for Oracle NM baseline.
-
-**Artifacts:** `data/t2_ragbench/pilot.jsonl`, `gold_docs.json`, `oracle_contexts.jsonl`
-
-**Reproduce:**
-
-```bash
-uv run python scripts/prep_t2_ragbench_pilot.py --subset FinQA --split test --n 50 --seed 42
-```
-
-### Phase 2 — Ingest into Foundry IQ
-
-#### Phase 2 status (2026-07-25)
+### Phase 2 — Ingest into Foundry IQ — **Done (then deferred)**
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Upload pilot PDFs | Done | 48 blobs → `foudryragstorageacct` / `t2-ragbench` |
-| Blob path layout | Done | `t2rag/FinQA/{context_id}/{page_*.pdf}` |
-| Manifest | Done | `data/t2_ragbench/blob_manifest.json` |
-| Upload script | Done | `scripts/upload_t2_ragbench_pdfs.py` |
-| Knowledge source | Done | `t2-ragbench-ks` (Azure Blob, Minimal extraction, `text-embedding-3-small`) |
-| Knowledge base | Done | `t2-ragbench-kb` (`gpt-5-mini`, medium reasoning, answer synthesis) |
-| Indexer run | Done | 48/48 success, 0 failed (`t2-ragbench-ks-indexer`) |
-| Smoke retrieve | Done | User **Search Index Data Reader**; index ~120 chunks; Entergy Q cites `finqa_test_ctx_118` / `page_372` |
+| Blob upload + KS/KB + indexer | Done | `t2-ragbench-ks` / `t2-ragbench-kb`; 48/48 indexed |
+| Smoke retrieve + citation map | Done | Search Index Data Reader; `context_id` from blob URL |
+| Keep Standard Search running | **Stopped** | Service deleted; Foundry IQ eval **deferred** until recreated |
 
-```bash
-uv run python scripts/upload_t2_ragbench_pdfs.py
-```
-
-1. Upload pilot PDFs to Blob with stable paths/IDs.
-2. In **Foundry (new)** → Knowledge, **or** programmatically:
-   - Create **Azure Blob knowledge source** (indexed) with Foundry embedding vectorizer  
-   - Create **Knowledge Base** referencing that source  
-   - Configure answer synthesis + medium reasoning effort (align with current `foundryiq.py`)
-3. Run indexer; verify document count ≈ unique `context_id`s in pilot.
-4. Spot-check portal playground: ask 3 known FinQA questions; confirm citations point at expected PDFs.
-
-**Exit criteria:** citations resolve to `context_id` / filename in harness logs.
-
-**Portal next (Knowledge Source + KB):**
-
-1. Foundry → project `foundry-rag` → **Knowledge** → **Knowledge bases** → **+ New**
-2. Add knowledge source type **Azure Blob (Indexed)**
-3. Storage: `foudryragstorageacct`, container `t2-ragbench`, path prefix optional `t2rag/`
-4. Auth: managed identity
-5. Vectorizer: Foundry embedding deployment `text-embedding-3-small`
-6. Name source `t2-ragbench-ks`, KB `t2-ragbench-kb`
-7. Answer model: `gpt-5-mini`; medium retrieval reasoning effort
-8. Run indexer; confirm ~48 documents indexed
-
-### Phase 3 — Eval harness (repo work)
-
-#### Phase 3 status (2026-07-25)
+### Phase 3 — Eval harness — **Done**
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Loader / metrics / parse | Done | `src/foundry_rag/eval/t2_ragbench/` + `mechanisms/foundryiq_refs.py` |
-| Foundry IQ runner | Done | returns `{answer, ranked_context_ids}` from blob URLs |
+| Loader / metrics / parse | Done | `src/foundry_rag/eval/t2_ragbench/` |
+| Foundry IQ runner | Done | REST fallback; `--method foundryiq` |
 | Oracle runner | Done | gold context → Foundry chat |
 | CLI | Done | `scripts/eval_foundryiq_t2_ragbench.py` |
-| Unit tests | Done | `tests/test_t2_ragbench_metrics.py` |
-| Full pilot (n=50) | Done | `pilot50`: NM=0.66, MRR@3=1.00, R@3=1.00, 0 errors (~11s/q) |
-| Local pgvector path | Done | Docker `pgvector`; index 77 chunks; vector-only `pgvector-pilot50`: NM=0.66, MRR@3=0.92, R@3=0.98 |
-| BM25+vector hybrid | Done | Okapi BM25 + dense RRF; `pgvector-hybrid-pilot50` (see results CSV) |
+| Unit tests | Done | `tests/test_t2_ragbench_metrics.py`, `test_pgvector_hybrid.py` |
+| Foundry IQ pilot (n=50) | Done | `pilot50`: NM=0.66, MRR@3=1.00, R@3=1.00 |
 
-Extend the existing FoundryIQ path rather than inventing a second stack.
+### Phase 3a — Local Postgres / pgvector — **Done**
 
-| Piece | Suggested location |
-|-------|--------------------|
-| Dataset loader | `src/foundry_rag/eval/t2_ragbench/load.py` |
-| Number Match (ε=1e−2) | `src/foundry_rag/eval/t2_ragbench/metrics.py` |
-| MRR@k / R@k | same |
-| Foundry IQ runner (reuse client) | wrap `mechanisms/foundryiq.py` → return `{answer, ranked_context_ids}` |
-| Oracle runner | Foundry chat with gold context only |
-| CLI | `scripts/eval_foundryiq_t2_ragbench.py` |
-| Results | `data/t2_ragbench/results/{run_id}.jsonl` + `summary.csv` |
+| Item | Status | Notes |
+|------|--------|-------|
+| Docker Compose | Done | `docker-compose.yml` → `foundry-rag-pgvector` |
+| Store + BM25 + RRF hybrid | Done | `mechanisms/pgvector_store.py` |
+| Index script | Done | `scripts/index_t2_ragbench_pgvector.py` (77 chunks) |
+| Eval method | Done | `--method pgvector --retrieval hybrid\|vector\|bm25` |
+| Vector-only pilot | Done | `pgvector-pilot50`: NM=0.66, MRR@3=0.92, R@3=0.98 |
+| Hybrid pilot | Done | `pgvector-hybrid-pilot50`: NM=0.72, MRR@3=0.95, R@3=1.00 |
 
-**Per-question loop:**
+```bash
+docker compose up -d
+uv run python scripts/index_t2_ragbench_pgvector.py --reset
+uv run python scripts/eval_foundryiq_t2_ragbench.py --method pgvector --retrieval hybrid
+```
 
-1. Call KB `retrieve` with context-independent `question`  
-2. Extract synthesized answer text  
-3. Extract ranked retrieved source IDs (top-3) from response/activity/citations  
-4. Score NM vs `program_answer`  
-5. Score MRR@3 / R@3 vs gold `context_id`  
-6. Persist raw response for debugging  
+Connect: `postgresql://foundry:foundry@localhost:5432/t2_ragbench` (`DATABASE_URL`).
 
-**Output columns (leaderboard-like):**
+### Phase 3b — Local LanceDB — **Done**
 
-`subset | NM | MRR@3 | R@3 | n | model | method | run_id`
+| Item | Status | Notes |
+|------|--------|-------|
+| Embedded store + hybrid | Done | `mechanisms/lancedb_store.py` (no Docker) |
+| Index script | Done | `scripts/index_t2_ragbench_lancedb.py` → `data/t2_ragbench/lancedb/` (gitignored) |
+| Eval method | Done | `--method lancedb --retrieval hybrid\|vector\|bm25` |
+| Hybrid pilot | Done | `20260725T234144Z-0dcd33`: NM=0.68, MRR@3=0.95, R@3=1.00 |
 
-Methods to report:
+```bash
+uv run python scripts/index_t2_ragbench_lancedb.py --reset
+uv run python scripts/eval_foundryiq_t2_ragbench.py --method lancedb --retrieval hybrid
+```
 
-- `Oracle Context` (no retrieval)  
-- `FoundryIQ / Knowledge Base` (system under test)  
-- Optional later: Hybrid BM25 custom index (your module 02) for apples-to-apples vs paper  
+### Phase 3c — Azure AI Search Basic hybrid — **Done**
 
-### Phase 4 — Scale & report
+| Item | Status | Notes |
+|------|--------|-------|
+| Basic Search service | Done | `foundryiq-search-basic` (SKU basic, North Central US) |
+| Store + hybrid query | Done | `mechanisms/azure_search_store.py` (BM25 + vector RRF) |
+| Index script | Done | `scripts/index_t2_ragbench_azure_search.py` (77 chunks) |
+| Eval method | Done | `--method azure_search --retrieval hybrid\|vector\|bm25` |
+| Hybrid pilot | Done | `azure-search-hybrid-pilot50`: NM=0.66, MRR@3=0.97, R@3=1.00 |
 
-1. Scale pilot → FinQA full `test` → ConvFinQA `turn_0` → TAT-DQA `test`.  
-2. Produce summary table matching leaderboard shape (NM + MRR@3 per subset + weighted avg by #QA).  
-3. Optional: log runs to Foundry Evaluation with Groundedness / Document Retrieval for qualitative dashboards — **do not replace** NM/MRR.  
-4. Cost/latency report: tokens, Search RU, $/question, p50/p95 latency.
+```bash
+uv run python scripts/index_t2_ragbench_azure_search.py --reset
+uv run python scripts/eval_foundryiq_t2_ragbench.py --method azure_search --retrieval hybrid
+```
 
-### Phase 5 — Hardening (after metrics work)
+### Pilot scoreboard (FinQA n=50, `gpt-5-mini`)
 
-1. Resume failed runs (idempotent JSONL append).  
+| Method | NM | MRR@3 | R@3 | Run id |
+|--------|-----|-------|-----|--------|
+| Foundry IQ / Knowledge Base | 0.66 | 1.00 | 1.00 | `pilot50` |
+| Postgres / pgvector (vector) | 0.66 | 0.92 | 0.98 | `pgvector-pilot50` |
+| Postgres / pgvector (BM25+vector) | **0.72** | 0.95 | 1.00 | `pgvector-hybrid-pilot50` |
+| LanceDB (BM25+vector) | 0.68 | 0.95 | 1.00 | `20260725T234144Z-0dcd33` |
+| Azure AI Search Basic (BM25+vector) | 0.66 | **0.97** | 1.00 | `azure-search-hybrid-pilot50` |
+
+Results under `data/t2_ragbench/results/`.
+
+### Phase 4 — Scale & report — **Deferred for Foundry IQ; optional for local**
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Foundry IQ full FinQA / all subsets | **Deferred** | Recreate Standard Search only for a timed eval window |
+| Local scale (pgvector / LanceDB) | Optional next | Download full T² PDFs → re-index → same CLI |
+| Leaderboard-shaped summary | Partial | Pilot table above; full subsets TBD |
+| Cost note | Observed | Search S1 ≫ Foundry tokens (~cents for emb+chat MTD) |
+
+### Phase 5 — Hardening — **Not started**
+
+1. Resume failed runs (idempotent JSONL append) — partial (`--resume`).  
 2. Rate limiting / concurrency caps.  
-3. Ablations: extracted-text KS vs PDF KS; medium vs low reasoning effort; with/without answer synthesis (extractive then local LLM).  
+3. Ablations: chunk size, retrieval mode, reasoning effort (Foundry when resumed).
 
 ---
 
@@ -240,27 +193,26 @@ Methods to report:
 Parse numeric prediction from model answer; compare to `program_answer` with relative tolerance **ε = 1e−2**. Non-numeric → incorrect.
 
 **MRR@3**  
-If gold `context_id` at rank `r` in top-3 retrieved docs → `1/r`, else `0`. Average over questions.
+If gold `context_id` at rank `r` in top-3 retrieved docs → `1/r`, else `0`. Average over questions.  
+(Not Oracle: even a gold-only corpus can rank the wrong PDF higher.)
 
 **R@3**  
 `1` if gold in top-3, else `0`. Average over questions.
 
 **Oracle**  
-MRR@3 / R@3 = 100 by definition; NM is reasoning ceiling for the chosen generator.
+MRR@3 / R@3 = 1.0 by definition; NM is reasoning ceiling for the chosen generator.
 
 ---
 
 ## Effort & cost expectations
 
-| Stage | Rough effort | Cost note |
-|-------|--------------|-----------|
-| Phase 0–1 | 0.5–1 day | Low |
-| Phase 2 ingest + ID validation | 1–2 days | Indexing + embeddings |
-| Phase 3 harness + pilot 50 | 1–2 days | ~50 KB retrieve+synthesize calls |
-| Full FinQA test (~1.1k) | 0.5–1 day run time | Dominant cost: answer synthesis |
-| All subsets (~23k) | multi-day / high $ | Prefer sample → full |
-
-Full 23k with answer synthesis is expensive; treat as Phase 4 only after pilot metrics look sane.
+| Stage | Status | Cost note |
+|-------|--------|-----------|
+| Phase 0–2 Foundry IQ setup | Done | Search S1 was the expensive line item |
+| Phase 3 harness + Foundry pilot | Done | ~50 KB retrieve calls |
+| Phase 3a/3b local pilots | Done | Docker pgvector or LanceDB disk; Foundry tokens only |
+| Foundry IQ scale (Phase 4) | **Deferred** | Recreate Search only when needed |
+| Full ~23k all subsets | Later | Prefer local hybrid first |
 
 ---
 
@@ -268,40 +220,37 @@ Full 23k with answer synthesis is expensive; treat as Phase 4 only after pilot m
 
 - Submitting to public T²-RAGBench leaderboard  
 - Retraining / fine-tuning models  
-- Replacing Foundry IQ with custom Hybrid RAG as primary SUT (optional comparison only)  
+- Keeping Standard Search always-on for Foundry IQ  
 - Exact replication of paper embedding ablations  
 
 ---
 
 ## Success criteria
 
-1. Pilot (N≥50 FinQA test) produces NM, MRR@3, R@3 for Foundry IQ and Oracle.  
-2. Citation → `context_id` mapping validated (spot-check ≥90% of hits).  
-3. One-command CLI reproduces summary CSV from a saved run.  
-4. Documented env + portal steps so the KB can be recreated in another Foundry project.
+| Criterion | Status |
+|-----------|--------|
+| Pilot NM / MRR@3 / R@3 for at least one SUT | **Met** (Foundry IQ + pgvector + LanceDB) |
+| Citation / chunk → `context_id` mapping | **Met** (blob URL / chunk metadata) |
+| One-command CLI reproduce summary CSV | **Met** |
+| Foundry IQ production-scale eval | **Deferred** |
+| Local hybrid path without Search S1 | **Met** |
 
 ---
 
-## Implementation units (when executing)
+## Implementation units
 
-1. **Dataset prep scripts** — download, ID map, pilot JSONL  
-2. **Blob upload + KS/KB provisioning notes** (portal checklist + optional Python)  
-3. **Metrics module** — NM, MRR@k, R@k + unit tests on paper-style examples  
-4. **Foundry IQ adapter** — extend `foundryiq.py` to return ranked source IDs  
-5. **Eval CLI** — batch run, resume, summary table  
-6. **Docs** — update `docs/rag/09_foundryiq.md` with T²-RAGBench eval section  
-
-### Test scenarios (harness)
-
-- NM: exact match, 1% relative match, mismatch, non-numeric → fail  
-- MRR: gold@1 → 1.0; gold@3 → ~0.33; miss → 0  
-- End-to-end dry-run: 3 fixture questions with mocked KB response  
+1. Dataset prep scripts — **done**  
+2. Blob upload + Foundry IQ KS/KB — **done**; Search torn down  
+3. Metrics module + tests — **done**  
+4. Foundry IQ adapter — **done**; further eval **deferred**  
+5. Eval CLI — **done** (`foundryiq` \| `oracle` \| `pgvector` \| `lancedb` \| `azure_search`)  
+6. Postgres/pgvector + LanceDB stores — **done**  
+7. Azure AI Search Basic hybrid store — **done** (direct index; Foundry IQ still deferred)  
 
 ---
 
-## Open choices (confirm before build)
+## Open choices (when resuming Foundry IQ)
 
-1. **Corpus:** PDFs only (recommended) vs extracted `context` text documents?  
-2. **Scale:** Pilot 50 → FinQA test only, or commit to all three subsets?  
-3. **Query surface:** Knowledge Base API only (recommended for metrics) vs Foundry Agent playground also?  
-4. **Existing Search tier:** Does current `foundry-rag-ai-search-service` support Knowledge Bases / agentic retrieval, or do we need a SKU upgrade?
+1. Recreate Standard Search only for a short eval window, then delete again?  
+2. Scale local hybrid to full FinQA test before touching Foundry IQ again?  
+3. Add Oracle Context baseline run for NM ceiling on the same 50?

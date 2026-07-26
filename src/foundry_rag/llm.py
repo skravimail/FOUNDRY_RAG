@@ -2,20 +2,33 @@
 
 from __future__ import annotations
 
+import os
+import re
+
 from foundry_rag import config
 from foundry_rag.clients import get_embeddings_client, get_openai_client
 
+# gpt-5* Responses deployments accept reasoning.effort; gpt-4.x generally do not.
+_REASONING_MODEL_RE = re.compile(r"gpt-5", re.IGNORECASE)
+
 
 def require_chat_deployment() -> str:
-    if not config.FOUNDRY_CHAT_DEPLOYMENT:
+    # Prefer live env so evals can override without reloading config module.
+    name = os.environ.get("FOUNDRY_CHAT_DEPLOYMENT") or config.FOUNDRY_CHAT_DEPLOYMENT
+    if not name:
         raise RuntimeError("Missing required environment variable: FOUNDRY_CHAT_DEPLOYMENT")
-    return config.FOUNDRY_CHAT_DEPLOYMENT
+    return name
 
 
 def require_embedding_deployment() -> str:
-    if not config.FOUNDRY_EMBEDDING_DEPLOYMENT:
+    name = os.environ.get("FOUNDRY_EMBEDDING_DEPLOYMENT") or config.FOUNDRY_EMBEDDING_DEPLOYMENT
+    if not name:
         raise RuntimeError("Missing required environment variable: FOUNDRY_EMBEDDING_DEPLOYMENT")
-    return config.FOUNDRY_EMBEDDING_DEPLOYMENT
+    return name
+
+
+def _supports_reasoning_effort(deployment: str) -> bool:
+    return bool(_REASONING_MODEL_RE.search(deployment))
 
 
 def embed_texts(texts: list[str]) -> list[list[float]]:
@@ -42,14 +55,16 @@ def chat_complete(
     max_output_tokens: int = 800,
     json_mode: bool = False,
 ) -> str:
-    """Chat via the Responses API (works with gpt-5-mini reasoning models)."""
+    """Chat via the Responses API (gpt-5* + older chat deployments)."""
     client = get_openai_client()
+    model = require_chat_deployment()
     kwargs: dict = {
-        "model": require_chat_deployment(),
+        "model": model,
         "input": user,
         "max_output_tokens": max_output_tokens,
-        "reasoning": {"effort": "minimal"},
     }
+    if _supports_reasoning_effort(model):
+        kwargs["reasoning"] = {"effort": "minimal"}
     if system:
         # Prefer `instructions` — role="system" message items are rejected by
         # some Foundry Responses deployments.
