@@ -1,0 +1,62 @@
+T²-RAGBench eval run_id=pilot50 n=50 methods=['foundryiq']
+results → /Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/results/pilot50.jsonl
+[1/50] OK foundryiq finqa_test_17 NM=True MRR=1.00 R=1 9.5s
+[2/50] OK foundryiq finqa_test_22 NM=False MRR=1.00 R=1 8.8s
+[3/50] OK foundryiq finqa_test_33 NM=True MRR=1.00 R=1 11.1s
+[4/50] OK foundryiq finqa_test_48 NM=False MRR=1.00 R=1 11.1s
+[5/50] OK foundryiq finqa_test_49 NM=True MRR=1.00 R=1 10.0s
+[6/50] OK foundryiq finqa_test_81 NM=False MRR=1.00 R=1 8.4s
+[7/50] OK foundryiq finqa_test_117 NM=True MRR=1.00 R=1 8.8s
+[8/50] OK foundryiq finqa_test_148 NM=True MRR=1.00 R=1 17.7s
+[9/50] OK foundryiq finqa_test_193 NM=True MRR=1.00 R=1 9.2s
+[10/50] OK foundryiq finqa_test_213 NM=False MRR=1.00 R=1 7.3s
+[11/50] OK foundryiq finqa_test_231 NM=False MRR=1.00 R=1 10.6s
+[12/50] OK foundryiq finqa_test_241 NM=True MRR=1.00 R=1 13.3s
+[13/50] OK foundryiq finqa_test_256 NM=True MRR=1.00 R=1 13.0s
+[14/50] OK foundryiq finqa_test_261 NM=True MRR=1.00 R=1 16.4s
+[15/50] OK foundryiq finqa_test_266 NM=True MRR=1.00 R=1 12.1s
+[16/50] OK foundryiq finqa_test_269 NM=True MRR=1.00 R=1 12.4s
+[17/50] OK foundryiq finqa_test_301 NM=True MRR=1.00 R=1 11.2s
+[18/50] OK foundryiq finqa_test_337 NM=True MRR=1.00 R=1 10.3s
+[19/50] OK foundryiq finqa_test_361 NM=False MRR=1.00 R=1 14.0s
+[20/50] OK foundryiq finqa_test_375 NM=True MRR=1.00 R=1 12.8s
+[21/50] OK foundryiq finqa_test_404 NM=True MRR=1.00 R=1 11.2s
+[22/50] OK foundryiq finqa_test_439 NM=True MRR=1.00 R=1 12.4s
+[23/50] OK foundryiq finqa_test_482 NM=True MRR=1.00 R=1 11.5s
+[24/50] OK foundryiq finqa_test_612 NM=True MRR=1.00 R=1 8.8s
+[25/50] OK foundryiq finqa_test_653 NM=True MRR=1.00 R=1 10.5s
+[26/50] OK foundryiq finqa_test_671 NM=True MRR=1.00 R=1 12.2s
+[27/50] OK foundryiq finqa_test_676 NM=True MRR=1.00 R=1 9.1s
+[28/50] OK foundryiq finqa_test_681 NM=False MRR=1.00 R=1 11.0s
+[29/50] OK foundryiq finqa_test_697 NM=True MRR=1.00 R=1 11.7s
+[30/50] OK foundryiq finqa_test_744 NM=True MRR=1.00 R=1 9.0s
+[31/50] OK foundryiq finqa_test_783 NM=False MRR=1.00 R=1 12.1s
+[32/50] OK foundryiq finqa_test_800 NM=False MRR=1.00 R=1 11.6s
+[33/50] OK foundryiq finqa_test_834 NM=False MRR=1.00 R=1 10.8s
+[34/50] OK foundryiq finqa_test_853 NM=True MRR=1.00 R=1 11.3s
+[35/50] OK foundryiq finqa_test_858 NM=False MRR=1.00 R=1 9.8s
+[36/50] OK foundryiq finqa_test_861 NM=False MRR=1.00 R=1 12.4s
+[37/50] OK foundryiq finqa_test_885 NM=False MRR=1.00 R=1 11.3s
+[38/50] OK foundryiq finqa_test_907 NM=True MRR=1.00 R=1 12.1s
+[39/50] OK foundryiq finqa_test_908 NM=True MRR=1.00 R=1 8.5s
+[40/50] OK foundryiq finqa_test_914 NM=True MRR=1.00 R=1 10.8s
+[41/50] OK foundryiq finqa_test_947 NM=False MRR=1.00 R=1 11.1s
+[42/50] OK foundryiq finqa_test_965 NM=False MRR=1.00 R=1 12.9s
+[43/50] OK foundryiq finqa_test_993 NM=True MRR=1.00 R=1 11.6s
+[44/50] OK foundryiq finqa_test_1005 NM=True MRR=1.00 R=1 10.5s
+[45/50] OK foundryiq finqa_test_1011 NM=False MRR=1.00 R=1 10.1s
+[46/50] OK foundryiq finqa_test_1013 NM=True MRR=1.00 R=1 11.0s
+[47/50] OK foundryiq finqa_test_1020 NM=True MRR=1.00 R=1 11.7s
+[48/50] OK foundryiq finqa_test_1042 NM=False MRR=1.00 R=1 10.1s
+[49/50] OK foundryiq finqa_test_1087 NM=True MRR=1.00 R=1 12.1s
+[50/50] OK foundryiq finqa_test_1104 NM=True MRR=1.00 R=1 10.2s
+                         T²-RAGBench summary (pilot50)                          
+┏━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━┓
+┃ subset ┃ method                    ┃ n  ┃ NM    ┃ MRR@3 ┃ R@3   ┃ model      ┃
+┡━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━┩
+│ FinQA  │ FoundryIQ / Knowledge     │ 50 │ 0.660 │ 1.000 │ 1.000 │ gpt-5-mini │
+│        │ Base                      │    │       │       │       │            │
+└────────┴───────────────────────────┴────┴───────┴───────┴───────┴────────────┘
+wrote 
+/Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/results/pilot50.summary.csv 
+(errors=0)

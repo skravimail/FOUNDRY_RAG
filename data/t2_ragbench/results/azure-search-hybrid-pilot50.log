@@ -1,0 +1,65 @@
+T²-RAGBench eval run_id=azure-search-hybrid-pilot50 n=50 
+methods=['azure_search'] retrieval=hybrid
+results → 
+/Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/results/azure-search-hybrid-pilo
+t50.jsonl
+[1/50] OK azure_search finqa_test_17 NM=True MRR=1.00 R=1 5.4s
+[2/50] OK azure_search finqa_test_22 NM=False MRR=1.00 R=1 6.9s
+[3/50] OK azure_search finqa_test_33 NM=True MRR=1.00 R=1 3.9s
+[4/50] OK azure_search finqa_test_48 NM=True MRR=1.00 R=1 3.9s
+[5/50] OK azure_search finqa_test_49 NM=True MRR=1.00 R=1 3.7s
+[6/50] OK azure_search finqa_test_81 NM=False MRR=1.00 R=1 6.2s
+[7/50] OK azure_search finqa_test_117 NM=False MRR=1.00 R=1 3.8s
+[8/50] OK azure_search finqa_test_148 NM=False MRR=1.00 R=1 6.8s
+[9/50] OK azure_search finqa_test_193 NM=True MRR=1.00 R=1 3.8s
+[10/50] OK azure_search finqa_test_213 NM=False MRR=1.00 R=1 5.7s
+[11/50] OK azure_search finqa_test_231 NM=False MRR=1.00 R=1 3.6s
+[12/50] OK azure_search finqa_test_241 NM=True MRR=1.00 R=1 3.9s
+[13/50] OK azure_search finqa_test_256 NM=True MRR=1.00 R=1 3.6s
+[14/50] OK azure_search finqa_test_261 NM=True MRR=1.00 R=1 11.4s
+[15/50] OK azure_search finqa_test_266 NM=True MRR=1.00 R=1 5.0s
+[16/50] OK azure_search finqa_test_269 NM=True MRR=1.00 R=1 3.3s
+[17/50] OK azure_search finqa_test_301 NM=True MRR=1.00 R=1 5.6s
+[18/50] OK azure_search finqa_test_337 NM=True MRR=1.00 R=1 3.5s
+[19/50] OK azure_search finqa_test_361 NM=False MRR=1.00 R=1 4.3s
+[20/50] OK azure_search finqa_test_375 NM=True MRR=1.00 R=1 6.5s
+[21/50] OK azure_search finqa_test_404 NM=True MRR=1.00 R=1 4.8s
+[22/50] OK azure_search finqa_test_439 NM=True MRR=1.00 R=1 3.6s
+[23/50] OK azure_search finqa_test_482 NM=False MRR=1.00 R=1 3.7s
+[24/50] OK azure_search finqa_test_612 NM=True MRR=1.00 R=1 3.5s
+[25/50] OK azure_search finqa_test_653 NM=True MRR=1.00 R=1 5.3s
+[26/50] OK azure_search finqa_test_671 NM=True MRR=1.00 R=1 6.9s
+[27/50] OK azure_search finqa_test_676 NM=True MRR=1.00 R=1 4.4s
+[28/50] OK azure_search finqa_test_681 NM=False MRR=1.00 R=1 3.2s
+[29/50] OK azure_search finqa_test_697 NM=True MRR=1.00 R=1 3.7s
+[30/50] OK azure_search finqa_test_744 NM=True MRR=0.50 R=1 3.5s
+[31/50] OK azure_search finqa_test_783 NM=False MRR=0.50 R=1 5.2s
+[32/50] OK azure_search finqa_test_800 NM=False MRR=1.00 R=1 5.4s
+[33/50] OK azure_search finqa_test_834 NM=False MRR=1.00 R=1 5.5s
+[34/50] OK azure_search finqa_test_853 NM=True MRR=1.00 R=1 3.7s
+[35/50] OK azure_search finqa_test_858 NM=False MRR=1.00 R=1 3.7s
+[36/50] OK azure_search finqa_test_861 NM=True MRR=1.00 R=1 5.7s
+[37/50] OK azure_search finqa_test_885 NM=False MRR=1.00 R=1 3.6s
+[38/50] OK azure_search finqa_test_907 NM=True MRR=1.00 R=1 6.7s
+[39/50] OK azure_search finqa_test_908 NM=True MRR=1.00 R=1 3.5s
+[40/50] OK azure_search finqa_test_914 NM=True MRR=0.50 R=1 3.4s
+[41/50] OK azure_search finqa_test_947 NM=False MRR=1.00 R=1 4.2s
+[42/50] OK azure_search finqa_test_965 NM=True MRR=1.00 R=1 3.6s
+[43/50] OK azure_search finqa_test_993 NM=True MRR=1.00 R=1 3.4s
+[44/50] OK azure_search finqa_test_1005 NM=True MRR=1.00 R=1 4.8s
+[45/50] OK azure_search finqa_test_1011 NM=False MRR=1.00 R=1 5.4s
+[46/50] OK azure_search finqa_test_1013 NM=True MRR=1.00 R=1 6.9s
+[47/50] OK azure_search finqa_test_1020 NM=True MRR=1.00 R=1 3.5s
+[48/50] OK azure_search finqa_test_1042 NM=False MRR=1.00 R=1 3.9s
+[49/50] OK azure_search finqa_test_1087 NM=True MRR=1.00 R=1 3.6s
+[50/50] OK azure_search finqa_test_1104 NM=True MRR=1.00 R=1 6.4s
+               T²-RAGBench summary (azure-search-hybrid-pilot50)                
+┏━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━┓
+┃ subset ┃ method                    ┃ n  ┃ NM    ┃ MRR@3 ┃ R@3   ┃ model      ┃
+┡━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━┩
+│ FinQA  │ Azure AI Search           │ 50 │ 0.660 │ 0.970 │ 1.000 │ gpt-5-mini │
+│        │ (BM25+vector)             │    │       │       │       │            │
+└────────┴───────────────────────────┴────┴───────┴───────┴───────┴────────────┘
+wrote 
+/Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/results/azure-search-hybrid-pilo
+t50.summary.csv (errors=0)
