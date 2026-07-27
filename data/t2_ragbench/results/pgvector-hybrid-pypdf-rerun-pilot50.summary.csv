@@ -1,0 +1,2 @@
+subset,NM,MRR@3,R@3,n,model,method,run_id
+FinQA,0.6800,0.9467,1.0000,50,gpt-5-mini,Postgres / pgvector (BM25+vector),pgvector-hybrid-pypdf-rerun-pilot50
