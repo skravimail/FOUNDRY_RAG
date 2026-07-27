@@ -1,0 +1,91 @@
+T²-RAGBench eval run_id=pgvector-hybrid-gpt41mini-pilot50 n=50 
+methods=['pgvector'] retrieval=hybrid
+results → 
+/Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/results/pgvector-hybrid-gpt41min
+i-pilot50.jsonl
+[1/50] OK pgvector finqa_test_17 NM=True MRR=1.00 R=1 37.5s
+[2/50] OK pgvector finqa_test_22 NM=False MRR=1.00 R=1 21.1s
+[3/50] OK pgvector finqa_test_33 NM=True MRR=1.00 R=1 14.6s
+[4/50] OK pgvector finqa_test_48 NM=False MRR=1.00 R=1 30.1s
+[5/50] OK pgvector finqa_test_49 NM=True MRR=1.00 R=1 17.6s
+[6/50] OK pgvector finqa_test_81 NM=True MRR=1.00 R=1 9.2s
+[7/50] OK pgvector finqa_test_117 NM=True MRR=1.00 R=1 9.8s
+[8/50] OK pgvector finqa_test_148 NM=False MRR=1.00 R=1 9.6s
+[9/50] OK pgvector finqa_test_193 NM=True MRR=1.00 R=1 11.1s
+[10/50] OK pgvector finqa_test_213 NM=False MRR=1.00 R=1 10.9s
+[11/50] OK pgvector finqa_test_231 NM=False MRR=1.00 R=1 11.5s
+[12/50] OK pgvector finqa_test_241 NM=True MRR=1.00 R=1 9.8s
+[13/50] OK pgvector finqa_test_256 NM=True MRR=1.00 R=1 12.3s
+[14/50] OK pgvector finqa_test_261 NM=True MRR=1.00 R=1 9.5s
+[15/50] OK pgvector finqa_test_266 NM=True MRR=1.00 R=1 18.7s
+[16/50] OK pgvector finqa_test_269 NM=True MRR=1.00 R=1 20.1s
+[17/50] OK pgvector finqa_test_301 NM=True MRR=1.00 R=1 11.6s
+[18/50] OK pgvector finqa_test_337 NM=True MRR=0.50 R=1 14.1s
+[19/50] OK pgvector finqa_test_361 NM=False MRR=1.00 R=1 18.2s
+[20/50] OK pgvector finqa_test_375 NM=True MRR=1.00 R=1 28.5s
+[21/50] OK pgvector finqa_test_404 NM=True MRR=1.00 R=1 24.3s
+[22/50] OK pgvector finqa_test_439 NM=True MRR=1.00 R=1 21.0s
+[23/50] OK pgvector finqa_test_482 NM=False MRR=1.00 R=1 18.6s
+[24/50] OK pgvector finqa_test_612 NM=True MRR=0.50 R=1 20.3s
+[25/50] OK pgvector finqa_test_653 NM=True MRR=1.00 R=1 12.5s
+[26/50] OK pgvector finqa_test_671 NM=True MRR=1.00 R=1 11.7s
+[27/50] OK pgvector finqa_test_676 NM=True MRR=1.00 R=1 20.2s
+[28/50] OK pgvector finqa_test_681 NM=False MRR=1.00 R=1 14.7s
+[29/50] OK pgvector finqa_test_697 NM=True MRR=1.00 R=1 14.4s
+[30/50] OK pgvector finqa_test_744 NM=True MRR=0.50 R=1 19.0s
+DefaultAzureCredential failed to retrieve a token from the included credentials.
+Attempted credentials:
+	EnvironmentCredential: EnvironmentCredential authentication unavailable. Environment variables are not fully configured.
+Visit https://aka.ms/azsdk/python/identity/environmentcredential/troubleshoot to troubleshoot this issue.
+	WorkloadIdentityCredential: WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information: https://aka.ms/azsdk/python/identity/workloadidentitycredential/troubleshoot. Missing required arguments: 'tenant_id', 'client_id', 'token_file_path'.
+	ManagedIdentityCredential: ManagedIdentityCredential authentication unavailable, no response from the IMDS endpoint.
+	SharedTokenCacheCredential: SharedTokenCacheCredential authentication unavailable. No accounts were found in the cache.
+	VisualStudioCodeCredential: VisualStudioCodeCredential requires the 'azure-identity-broker' package to be installed. You must also ensure you have the Azure Resources extension installed and have signed in to Azure via Visual Studio Code.
+	AzureCliCredential: Failed to invoke the Azure CLI
+	AzurePowerShellCredential: PowerShell is not installed
+	AzureDeveloperCliCredential: Failed to invoke the Azure Developer CLI
+	BrokerCredential: InteractiveBrowserBrokerCredential unavailable. The 'azure-identity-broker' package is required to use brokered authentication.
+To mitigate this issue, please refer to the troubleshooting guidelines here at https://aka.ms/azsdk/python/identity/defaultazurecredential/troubleshoot.
+[31/50] ERR pgvector finqa_test_783 NM=False MRR=0.00 R=0 38.1s
+[32/50] OK pgvector finqa_test_800 NM=True MRR=1.00 R=1 33.8s
+[33/50] OK pgvector finqa_test_834 NM=True MRR=1.00 R=1 23.7s
+[34/50] OK pgvector finqa_test_853 NM=True MRR=1.00 R=1 14.5s
+[35/50] OK pgvector finqa_test_858 NM=True MRR=1.00 R=1 25.2s
+[36/50] OK pgvector finqa_test_861 NM=True MRR=1.00 R=1 20.1s
+[37/50] OK pgvector finqa_test_885 NM=False MRR=1.00 R=1 37.2s
+DefaultAzureCredential failed to retrieve a token from the included credentials.
+Attempted credentials:
+	EnvironmentCredential: EnvironmentCredential authentication unavailable. Environment variables are not fully configured.
+Visit https://aka.ms/azsdk/python/identity/environmentcredential/troubleshoot to troubleshoot this issue.
+	WorkloadIdentityCredential: WorkloadIdentityCredential authentication unavailable. The workload options are not fully configured. See the troubleshooting guide for more information: https://aka.ms/azsdk/python/identity/workloadidentitycredential/troubleshoot. Missing required arguments: 'tenant_id', 'client_id', 'token_file_path'.
+	ManagedIdentityCredential: ManagedIdentityCredential authentication unavailable, no response from the IMDS endpoint.
+	SharedTokenCacheCredential: SharedTokenCacheCredential authentication unavailable. No accounts were found in the cache.
+	VisualStudioCodeCredential: VisualStudioCodeCredential requires the 'azure-identity-broker' package to be installed. You must also ensure you have the Azure Resources extension installed and have signed in to Azure via Visual Studio Code.
+	AzureCliCredential: Failed to invoke the Azure CLI
+	AzurePowerShellCredential: PowerShell is not installed
+	AzureDeveloperCliCredential: Failed to invoke the Azure Developer CLI
+	BrokerCredential: InteractiveBrowserBrokerCredential unavailable. The 'azure-identity-broker' package is required to use brokered authentication.
+To mitigate this issue, please refer to the troubleshooting guidelines here at https://aka.ms/azsdk/python/identity/defaultazurecredential/troubleshoot.
+[38/50] ERR pgvector finqa_test_907 NM=False MRR=0.00 R=0 30.9s
+[39/50] OK pgvector finqa_test_908 NM=True MRR=1.00 R=1 39.9s
+[40/50] OK pgvector finqa_test_914 NM=True MRR=1.00 R=1 13.3s
+[41/50] OK pgvector finqa_test_947 NM=False MRR=1.00 R=1 23.5s
+[42/50] OK pgvector finqa_test_965 NM=True MRR=0.50 R=1 18.4s
+[43/50] OK pgvector finqa_test_993 NM=True MRR=1.00 R=1 32.0s
+[44/50] OK pgvector finqa_test_1005 NM=True MRR=1.00 R=1 39.8s
+[45/50] OK pgvector finqa_test_1011 NM=False MRR=1.00 R=1 30.5s
+[46/50] OK pgvector finqa_test_1013 NM=True MRR=1.00 R=1 35.1s
+[47/50] OK pgvector finqa_test_1020 NM=True MRR=1.00 R=1 39.4s
+[48/50] OK pgvector finqa_test_1042 NM=False MRR=1.00 R=1 21.8s
+[49/50] OK pgvector finqa_test_1087 NM=True MRR=1.00 R=1 4.0s
+[50/50] OK pgvector finqa_test_1104 NM=True MRR=1.00 R=1 4.1s
+            T²-RAGBench summary (pgvector-hybrid-gpt41mini-pilot50)             
+┏━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ subset ┃ method                  ┃ n  ┃ NM    ┃ MRR@3 ┃ R@3   ┃ model        ┃
+┡━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━┩
+│ FinQA  │ Postgres / pgvector     │ 50 │ 0.720 │ 0.920 │ 0.960 │ gpt-4.1-mini │
+│        │ (BM25+vector)           │    │       │       │       │              │
+└────────┴─────────────────────────┴────┴───────┴───────┴───────┴──────────────┘
+wrote 
+/Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/results/pgvector-hybrid-gpt41min
+i-pilot50.summary.csv (errors=2)

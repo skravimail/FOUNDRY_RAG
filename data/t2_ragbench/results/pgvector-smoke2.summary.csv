@@ -1,0 +1,2 @@
+subset,NM,MRR@3,R@3,n,model,method,run_id
+FinQA,0.5000,0.7500,1.0000,2,gpt-5-mini,Postgres / pgvector,pgvector-smoke2
