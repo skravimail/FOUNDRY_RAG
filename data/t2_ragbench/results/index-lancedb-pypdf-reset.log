@@ -1,0 +1,10 @@
+gold docs: 48
+lancedb uri: /Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/lancedb
+extract+chunk ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+
+chunks to embed: 77 (empty_pdfs=0)
+embed ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+
+embedded in 10.5s
+[2026-07-27T17:53:15Z WARN  lance::dataset::write::insert] No existing dataset at /Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/lancedb/t2_chunks.lance, it will be created
+upserted=77 table_total=77
