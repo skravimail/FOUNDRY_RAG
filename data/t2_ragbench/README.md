@@ -48,6 +48,16 @@ uv run python scripts/eval_foundryiq_t2_ragbench.py --method lancedb --retrieval
 
 Index lands in `data/t2_ragbench/lancedb/` (gitignored). Same `--retrieval hybrid|vector|bm25` options as pgvector.
 
+### Pure BM25 (no embeddings)
+
+```bash
+# Index text only (zero vectors) — no Foundry embedding call
+uv run python scripts/index_t2_ragbench_lancedb.py --reset --skip-embed
+# Retrieval metrics only (MRR@3 / R@3); omit --retrieval-only when Foundry chat is configured for NM
+uv run python scripts/eval_foundryiq_t2_ragbench.py \
+  --method lancedb --retrieval bm25 --retrieval-only --run-id lancedb-bm25-pilot50
+```
+
 ## Azure AI Search hybrid RAG (Basic)
 
 ```bash

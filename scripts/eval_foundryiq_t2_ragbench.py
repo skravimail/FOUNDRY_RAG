@@ -96,10 +96,11 @@ def _summarize(rows: list[dict[str, Any]], *, run_id: str, model: str) -> list[d
     summary: list[dict[str, Any]] = []
     for (subset, method), items in sorted(groups.items()):
         n = len(items)
+        nm_vals = [r["nm"] for r in items if r.get("nm") is not None]
         summary.append(
             {
                 "subset": subset,
-                "NM": sum(1 for r in items if r["nm"]) / n if n else 0.0,
+                "NM": (sum(1 for v in nm_vals if v) / len(nm_vals)) if nm_vals else None,
                 "MRR@3": sum(r["mrr_at_3"] for r in items) / n if n else 0.0,
                 "R@3": sum(r["r_at_3"] for r in items) / n if n else 0.0,
                 "n": n,
@@ -120,7 +121,7 @@ def _write_summary_csv(path: Path, summary: list[dict[str, Any]]) -> None:
             writer.writerow(
                 {
                     **row,
-                    "NM": f"{row['NM']:.4f}",
+                    "NM": "" if row["NM"] is None else f"{row['NM']:.4f}",
                     "MRR@3": f"{row['MRR@3']:.4f}",
                     "R@3": f"{row['R@3']:.4f}",
                 }
@@ -170,6 +171,14 @@ def main() -> int:
         default=0.0,
         help="Seconds between calls (useful for Foundry IQ rate limits)",
     )
+    parser.add_argument(
+        "--retrieval-only",
+        action="store_true",
+        help=(
+            "Score MRR@3 / R@3 only (skip chat generation / NM). "
+            "Useful for pure BM25 ablations without Foundry credentials."
+        ),
+    )
     args = parser.parse_args()
 
     run_id = args.run_id or datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid.uuid4().hex[:6]
@@ -193,7 +202,8 @@ def main() -> int:
 
     console.print(
         f"[bold]T²-RAGBench eval[/bold] run_id={run_id} n={len(questions)} "
-        f"methods={methods} retrieval={args.retrieval}"
+        f"methods={methods} retrieval={args.retrieval} "
+        f"retrieval_only={args.retrieval_only}"
     )
     console.print(f"results → {out_jsonl}")
 
@@ -203,6 +213,13 @@ def main() -> int:
             for line in fh:
                 if line.strip():
                     scored_rows.append(json.loads(line))
+
+    generate = not args.retrieval_only
+    if args.retrieval_only and any(m in methods for m in ("foundryiq", "oracle")):
+        console.print(
+            "[yellow]--retrieval-only ignores foundryiq/oracle (they require generation)[/yellow]"
+        )
+        methods = [m for m in methods if m not in ("foundryiq", "oracle")]
 
     errors = 0
     for i, qrow in enumerate(questions, start=1):
@@ -223,18 +240,21 @@ def main() -> int:
                         qrow["question"],
                         top_k=args.top_k,
                         retrieval=args.retrieval,
+                        generate=generate,
                     )
                 elif method == "lancedb":
                     result = run_lancedb(
                         qrow["question"],
                         top_k=args.top_k,
                         retrieval=args.retrieval,
+                        generate=generate,
                     )
                 elif method == "azure_search":
                     result = run_azure_search(
                         qrow["question"],
                         top_k=args.top_k,
                         retrieval=args.retrieval,
+                        generate=generate,
                     )
                 else:
                     oracle = oracle_by_id.get(qid)
@@ -246,7 +266,11 @@ def main() -> int:
                         qrow["context_id"],
                     )
                 latency_s = time.perf_counter() - t0
-                nm = number_match(result["answer"], qrow["program_answer"])
+                nm = (
+                    None
+                    if args.retrieval_only
+                    else number_match(result["answer"], qrow["program_answer"])
+                )
                 mrr = mrr_at_k(result["ranked_context_ids"], qrow["context_id"], k=args.top_k)
                 r_at = recall_at_k(result["ranked_context_ids"], qrow["context_id"], k=args.top_k)
                 if method == "oracle":
@@ -257,7 +281,7 @@ def main() -> int:
                     "id": qid,
                     "subset": qrow.get("subset", "FinQA"),
                     "method": result["method"],
-                    "model": model,
+                    "model": model if generate else "retrieval-only",
                     "question": qrow["question"],
                     "program_answer": qrow["program_answer"],
                     "gold_context_id": qrow["context_id"],
@@ -278,13 +302,13 @@ def main() -> int:
                     "id": qid,
                     "subset": qrow.get("subset", "FinQA"),
                     "method": label,
-                    "model": model,
+                    "model": model if generate else "retrieval-only",
                     "question": qrow["question"],
                     "program_answer": qrow["program_answer"],
                     "gold_context_id": qrow["context_id"],
                     "answer": "",
                     "ranked_context_ids": [],
-                    "nm": False,
+                    "nm": None if args.retrieval_only else False,
                     "mrr_at_3": 0.0,
                     "r_at_3": 0.0,
                     "latency_s": round(latency_s, 3),
@@ -296,15 +320,16 @@ def main() -> int:
                 fh.write(json.dumps(record, default=str) + "\n")
             scored_rows.append(record)
             status = "OK" if not record["error"] else "ERR"
+            nm_disp = "n/a" if record["nm"] is None else str(record["nm"])
             console.print(
                 f"[{i}/{len(questions)}] {status} {method} {qid} "
-                f"NM={record['nm']} MRR={record['mrr_at_3']:.2f} "
+                f"NM={nm_disp} MRR={record['mrr_at_3']:.2f} "
                 f"R={record['r_at_3']:.0f} {record['latency_s']:.1f}s"
             )
             if args.sleep > 0:
                 time.sleep(args.sleep)
 
-    summary = _summarize(scored_rows, run_id=run_id, model=model)
+    summary = _summarize(scored_rows, run_id=run_id, model=model if generate else "retrieval-only")
     _write_summary_csv(out_summary, summary)
 
     table = Table(title=f"T²-RAGBench summary ({run_id})")
@@ -315,7 +340,7 @@ def main() -> int:
             row["subset"],
             row["method"],
             str(row["n"]),
-            f"{row['NM']:.3f}",
+            "n/a" if row["NM"] is None else f"{row['NM']:.3f}",
             f"{row['MRR@3']:.3f}",
             f"{row['R@3']:.3f}",
             row["model"],

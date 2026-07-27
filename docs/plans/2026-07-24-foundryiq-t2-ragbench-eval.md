@@ -167,6 +167,8 @@ uv run python scripts/eval_foundryiq_t2_ragbench.py --method azure_search --retr
 | Postgres / pgvector (BM25+vector) | **0.72** | 0.95 | 1.00 | `pgvector-hybrid-pilot50` |
 | LanceDB (BM25+vector) | 0.68 | 0.95 | 1.00 | `20260725T234144Z-0dcd33` |
 | Azure AI Search Basic (BM25+vector) | 0.66 | **0.97** | 1.00 | `azure-search-hybrid-pilot50` |
+| Azure AI Search Basic (BM25 only) | **0.72** | 0.94 | 1.00 | `azure-search-bm25-pilot50` |
+| LanceDB (BM25 only, retrieval) | — | **0.98** | 1.00 | `lancedb-bm25-pilot50` |
 
 Results under `data/t2_ragbench/results/`.
 

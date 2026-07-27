@@ -23,6 +23,7 @@ Raw runs: `data/t2_ragbench/results/`.
 | Azure AI Search (Basic) | Vector only | `text-embedding-3-small` | `gpt-5-mini` | 0.66 | 0.92 | 0.98 | 50 | `azure-search-vector-pilot50` |
 | Azure AI Search (Basic) | BM25 only | `text-embedding-3-small` | `gpt-5-mini` | **0.72** | 0.94 | 1.00 | 50 | `azure-search-bm25-pilot50` |
 | Azure AI Search (Basic) | BM25 + vector (RRF) | `text-embedding-3-small` | `gpt-5-mini` | 0.66 | **0.97** | 1.00 | 50 | `azure-search-hybrid-pilot50` |
+| LanceDB | BM25 only | — (retrieval-only) | — | — | **0.98** | 1.00 | 50 | `lancedb-bm25-pilot50` |
 
 ### Notes
 
@@ -30,6 +31,7 @@ Raw runs: `data/t2_ragbench/results/`.
 - Hybrid BM25+vector improved NM vs vector-only on both local stores; Foundry IQ led on MRR@3 (perfect rank-1 citations on this pilot).
 - Generator ablation (same hybrid index): `gpt-4.1-mini` matched `gpt-5-mini` on NM (0.72); MRR@3/R@3 slightly lower (0.92 / 0.96 vs 0.95 / 1.00).
 - Azure AI Search Basic ablation (same index, `gpt-5-mini`): BM25-only led NM (0.72); hybrid led MRR@3 (0.97) with perfect R@3; vector-only matched Foundry IQ NM (0.66) with one R@3 miss (0.98). Service `foundryiq-search-basic` left running (~$74/mo SU).
+- Pure BM25 ablation (2026-07-27): Azure Search BM25 NM=0.72 / MRR@3=0.94 / R@3=1.00. LanceDB Okapi BM25 retrieval-only MRR@3=0.98 / R@3=1.00 (NM deferred until Foundry chat credentials are available in-environment). Local pgvector BM25 uses the same `rank_bm25` Okapi path as LanceDB, so retrieval metrics match when indexes are built from the same chunks.
 - Foundry IQ further eval remains **deferred** (needs Standard Search for KB). Local stores + Basic Search are the active managed/local paths.
 - Oracle Context baseline (NM ceiling) not yet run on this pilot.
 

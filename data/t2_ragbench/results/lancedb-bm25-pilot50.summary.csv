@@ -1,0 +1,2 @@
+subset,NM,MRR@3,R@3,n,model,method,run_id
+FinQA,,0.9800,1.0000,50,retrieval-only,LanceDB (BM25),lancedb-bm25-pilot50

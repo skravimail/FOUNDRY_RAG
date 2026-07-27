@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -46,6 +47,17 @@ def main() -> int:
         "--reset",
         action="store_true",
         help="Truncate t2_chunks before indexing",
+    )
+    parser.add_argument(
+        "--skip-embed",
+        action="store_true",
+        help="Store zero vectors (BM25-only indexing; no Foundry embeddings call)",
+    )
+    parser.add_argument(
+        "--embed-dim",
+        type=int,
+        default=int(os.environ.get("FOUNDRY_EMBEDDING_DIMENSIONS", "1536")),
+        help="Embedding dimension when using --skip-embed (default: 1536)",
     )
     args = parser.parse_args()
 
@@ -94,20 +106,24 @@ def main() -> int:
         console.print("[red]No chunks to index[/red]")
         return 1
 
-    # Embed in batches
-    embeddings: list[list[float]] = []
-    t0 = time.perf_counter()
-    with Progress() as progress:
-        task = progress.add_task("embed", total=len(prepared))
-        for i in range(0, len(prepared), args.embed_batch):
-            batch = prepared[i : i + args.embed_batch]
-            vectors = embed_texts([row["content"] for row in batch])
-            embeddings.extend(vectors)
-            progress.advance(task, len(batch))
-    console.print(f"embedded in {time.perf_counter() - t0:.1f}s")
-
-    for row, vector in zip(prepared, embeddings, strict=True):
-        row["embedding"] = vector
+    if args.skip_embed:
+        console.print(f"[yellow]skip-embed: zero vectors dim={args.embed_dim} (BM25-only)[/yellow]")
+        for row in prepared:
+            row["embedding"] = [0.0] * args.embed_dim
+    else:
+        # Embed in batches
+        embeddings: list[list[float]] = []
+        t0 = time.perf_counter()
+        with Progress() as progress:
+            task = progress.add_task("embed", total=len(prepared))
+            for i in range(0, len(prepared), args.embed_batch):
+                batch = prepared[i : i + args.embed_batch]
+                vectors = embed_texts([row["content"] for row in batch])
+                embeddings.extend(vectors)
+                progress.advance(task, len(batch))
+        console.print(f"embedded in {time.perf_counter() - t0:.1f}s")
+        for row, vector in zip(prepared, embeddings, strict=True):
+            row["embedding"] = vector
 
     with connect() as conn:
         init_schema(conn)
