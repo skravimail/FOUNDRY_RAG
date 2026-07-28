@@ -1,0 +1,26 @@
+{
+  "n": 16,
+  "nm_rate": 0.3125,
+  "flipped": 5,
+  "model": "gpt-5",
+  "method": "vision-pdf-gold",
+  "reasoning_effort": "high",
+  "max_output_tokens": 8000,
+  "input": "data/t2_ragbench/results/pgvector-hybrid-pypdf-rerun-pilot50.jsonl",
+  "out": "data/t2_ragbench/results/gpt5-vision-pdf-nm-false-sample.jsonl",
+  "vs_gpt5_mini_vision": {
+    "vision_flipped": 3,
+    "vision_nm_rate": 0.1875
+  },
+  "vs_gpt5_text": {
+    "text_flipped": 0,
+    "text_nm_rate": 0.0
+  },
+  "flipped_ids": [
+    "finqa_test_48",
+    "finqa_test_81",
+    "finqa_test_482",
+    "finqa_test_800",
+    "finqa_test_947"
+  ]
+}

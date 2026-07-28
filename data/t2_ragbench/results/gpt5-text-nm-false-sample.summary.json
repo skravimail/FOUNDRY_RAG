@@ -1,0 +1,119 @@
+{
+  "n": 16,
+  "nm_rate": 0.3125,
+  "nm_true": 5,
+  "flipped": 5,
+  "model": "gpt-5",
+  "method": "pgvector-hybrid-text-gpt5",
+  "reasoning_effort": "high",
+  "max_output_tokens": 4000,
+  "deployment": "gpt-5",
+  "out": "data/t2_ragbench/results/gpt5-text-nm-false-sample.jsonl",
+  "vs_gpt5_mini_text": {
+    "baseline_nm": 0,
+    "baseline_flipped": 0,
+    "note": "All 16 were NM=false under gpt-5-mini text RAG"
+  },
+  "vs_vision_pdf_sample": {
+    "vision_flipped": 3,
+    "vision_nm_rate": 0.1875
+  },
+  "per_id": [
+    {
+      "id": "finqa_test_22",
+      "nm": false,
+      "flipped": false,
+      "answer": "8.51% decrease (from $101.88 to $93.21)"
+    },
+    {
+      "id": "finqa_test_48",
+      "nm": true,
+      "flipped": true,
+      "answer": "Approximately 16.9% (HTM $10.4B of total $61.4B)."
+    },
+    {
+      "id": "finqa_test_81",
+      "nm": true,
+      "flipped": true,
+      "answer": "$26.4 million (=$37 \u00f7 1.4)"
+    },
+    {
+      "id": "finqa_test_148",
+      "nm": false,
+      "flipped": false,
+      "answer": "Yes. Five-year cumulative return to 12/31/2017: CME Group Inc. $370.32 vs S&P 500 $208.14."
+    },
+    {
+      "id": "finqa_test_213",
+      "nm": false,
+      "flipped": false,
+      "answer": "50 to 200 feet"
+    },
+    {
+      "id": "finqa_test_231",
+      "nm": false,
+      "flipped": false,
+      "answer": "Approximately 22.6% (from $31B in 2008 to $24B in 2009)."
+    },
+    {
+      "id": "finqa_test_361",
+      "nm": false,
+      "flipped": false,
+      "answer": "$2.6 billion"
+    },
+    {
+      "id": "finqa_test_482",
+      "nm": true,
+      "flipped": true,
+      "answer": "$198.27 (i.e., the $100 investment grew to $198.27; a 98.27% cumulative return)"
+    },
+    {
+      "id": "finqa_test_681",
+      "nm": false,
+      "flipped": false,
+      "answer": "Not disclosed in the provided excerpts; the specific amounts are not available to calculate the total effect."
+    },
+    {
+      "id": "finqa_test_800",
+      "nm": true,
+      "flipped": true,
+      "answer": "$25,012 million\n\nDerived from fuel expense of $8,304 million being 33.2% of total operating expenses in 2011 (8,304 / 0.332 \u2248 25,012)."
+    },
+    {
+      "id": "finqa_test_834",
+      "nm": false,
+      "flipped": false,
+      "answer": "8.946 million"
+    },
+    {
+      "id": "finqa_test_858",
+      "nm": false,
+      "flipped": false,
+      "answer": "Decrease of $71 million (from $134 million at 12/31/2006 to $63 million at 12/31/2007)."
+    },
+    {
+      "id": "finqa_test_885",
+      "nm": false,
+      "flipped": false,
+      "answer": "45% of the segment\u2019s total net sales in 2006."
+    },
+    {
+      "id": "finqa_test_947",
+      "nm": true,
+      "flipped": true,
+      "answer": "19.23% (from $106.6m at the beginning of 2016 to $127.1m at the end of 2018)"
+    },
+    {
+      "id": "finqa_test_1011",
+      "nm": false,
+      "flipped": false,
+      "answer": "($61.1) million"
+    },
+    {
+      "id": "finqa_test_1042",
+      "nm": false,
+      "flipped": false,
+      "answer": "325.77 million shares"
+    }
+  ]
+}

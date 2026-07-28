@@ -1,0 +1,34 @@
+model=gpt-5 n=16 max_output_tokens=4000
+→ finqa_test_22
+  nm=False flipped=False latency=23.1s answer=8.51% decrease (from $101.88 to $93.21)
+→ finqa_test_48
+  nm=True flipped=True latency=26.5s answer=Approximately 16.9% (HTM $10.4B of total $61.4B).
+→ finqa_test_81
+  nm=True flipped=True latency=12.5s answer=$26.4 million (=$37 ÷ 1.4)
+→ finqa_test_148
+  nm=False flipped=False latency=7.9s answer=Yes. Five-year cumulative return to 12/31/2017: CME Group Inc. $370.32 vs S&P 50
+→ finqa_test_213
+  nm=False flipped=False latency=5.1s answer=50 to 200 feet
+→ finqa_test_231
+  nm=False flipped=False latency=6.4s answer=Approximately 22.6% (from $31B in 2008 to $24B in 2009).
+→ finqa_test_361
+  nm=False flipped=False latency=11.1s answer=$2.6 billion
+→ finqa_test_482
+  nm=True flipped=True latency=9.7s answer=$198.27 (i.e., the $100 investment grew to $198.27; a 98.27% cumulative return)
+→ finqa_test_681
+  nm=False flipped=False latency=17.8s answer=Not disclosed in the provided excerpts; the specific amounts are not available t
+→ finqa_test_800
+  nm=True flipped=True latency=18.3s answer=$25,012 million Derived from fuel expense of $8,304 million being 33.2% of total
+→ finqa_test_834
+  nm=False flipped=False latency=37.1s answer=Empty response
+→ finqa_test_858
+  nm=False flipped=False latency=6.6s answer=Decrease of $71 million (from $134 million at 12/31/2006 to $63 million at 12/31
+→ finqa_test_885
+  nm=False flipped=False latency=12.7s answer=45% of the segment’s total net sales in 2006.
+→ finqa_test_947
+  nm=True flipped=True latency=18.3s answer=19.23% (from $106.6m at the beginning of 2016 to $127.1m at the end of 2018)
+→ finqa_test_1011
+  nm=False flipped=False latency=9.9s answer=($61.1) million
+→ finqa_test_1042
+  nm=False flipped=False latency=20.6s answer=325.77 million shares
+summary: nm=5/16 (31.25%) flipped=5 → /Users/alpha/AI_ML/FOUNDRY_RAG/data/t2_ragbench/results/gpt5-text-nm-false-sample.summary.json
