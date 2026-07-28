@@ -1,0 +1,9 @@
+{
+  "n": 16,
+  "nm_rate": 0.1875,
+  "flipped": 3,
+  "model": "gpt-5-mini",
+  "method": "vision-pdf-gold",
+  "input": "data/t2_ragbench/results/pgvector-hybrid-pypdf-rerun-pilot50.jsonl",
+  "out": "data/t2_ragbench/results/vision-pdf-nm-false-sample.jsonl"
+}

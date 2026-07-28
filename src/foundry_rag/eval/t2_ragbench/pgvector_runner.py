@@ -36,6 +36,7 @@ def run_pgvector(
     *,
     top_k: int = 3,
     retrieval: RetrievalMode = "hybrid",
+    max_output_tokens: int = 400,
 ) -> dict[str, Any]:
     fetch_k = max(top_k * 4, 8)
     with connect() as conn:
@@ -74,7 +75,9 @@ def run_pgvector(
         + ("\n\n".join(context_blocks) if context_blocks else "(no retrieved context)")
         + f"\n\nQuestion: {question}\n\nFinal answer:"
     )
-    answer = chat_complete(system=SYSTEM_PROMPT, user=user, max_output_tokens=400)
+    answer = chat_complete(
+        system=SYSTEM_PROMPT, user=user, max_output_tokens=max_output_tokens
+    )
     return {
         "method": METHOD_NAMES[retrieval],
         "answer": answer,

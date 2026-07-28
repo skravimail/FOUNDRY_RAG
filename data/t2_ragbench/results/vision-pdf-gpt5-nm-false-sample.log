@@ -1,0 +1,64 @@
+model=gpt-5 sample=16 already_done=0 
+out=data/t2_ragbench/results/vision-pdf-gpt5-nm-false-sample.jsonl
+→ finqa_test_22 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_250/page_49.pdf 
+(76243 bytes)
+  nm=False flipped=False latency=68.8s answer=-8.51%
+→ finqa_test_48 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_155/page_65.pdf 
+(47619 bytes)
+  nm=True flipped=True latency=52.2s answer=16.9%
+→ finqa_test_81 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_331/page_136.pdf 
+(35400 bytes)
+  nm=False flipped=False latency=36.2s answer=Not disclosed (only $37 million 
+total over a 1.4-year weighted average period).
+→ finqa_test_148 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_256/page_40.pdf 
+(58941 bytes)
+  nm=False flipped=False latency=20.4s answer=Yes — CME Group Inc. outperformed 
+the S&P 500 (2017 cumulative total return: $3…
+→ finqa_test_213 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_161/page_29.pdf 
+(24822 bytes)
+  nm=False flipped=False latency=19.9s answer=50–200 feet
+→ finqa_test_231 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_42/page_25.pdf 
+(34162 bytes)
+  nm=False flipped=False latency=15.0s answer=22.6%
+→ finqa_test_361 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_47/page_89.pdf 
+(25743 bytes)
+  nm=False flipped=False latency=18.7s answer=2.6
+→ finqa_test_482 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_7/page_33.pdf 
+(139840 bytes)
+  nm=True flipped=True latency=23.6s answer=98.27% (final value $198.27)
+→ finqa_test_681 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_204/page_140.pdf
+(25637 bytes)
+  nm=False flipped=False latency=29.1s answer=$30 to net income; $294 to other 
+comprehensive income.
+→ finqa_test_800 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_48/page_18.pdf 
+(46026 bytes)
+  nm=True flipped=True latency=53.7s answer=25,012 million
+→ finqa_test_834 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_333/page_92.pdf 
+(24086 bytes)
+  nm=False flipped=False latency=56.9s answer=Empty response
+→ finqa_test_858 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_223/page_175.pdf
+(19914 bytes)
+  nm=False flipped=False latency=13.1s answer=-$71 million
+→ finqa_test_885 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_230/page_70.pdf 
+(42295 bytes)
+  nm=False flipped=False latency=20.9s answer=45% of the segment’s total net 
+sales in 2006.
+→ finqa_test_947 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_372/page_107.pdf
+(90799 bytes)
+  nm=True flipped=True latency=34.1s answer=19.23%
+→ finqa_test_1011 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_308/page_70.pdf
+(2892129 bytes)
+  nm=False flipped=False latency=15.8s answer=-$61.1 million
+→ finqa_test_1042 pdf=data/t2_ragbench/pdfs/FinQA/finqa_test_ctx_152/page_77.pdf
+(40015 bytes)
+  nm=False flipped=False latency=24.7s answer=325.8 million shares
+Traceback (most recent call last):
+  File "/Users/alpha/AI_ML/FOUNDRY_RAG/scripts/eval_vision_pdf_nm_false_sample.py", line 229, in <module>
+    table.add_column("flipped?")
+                     ^^^^^^
+  File "/Users/alpha/AI_ML/FOUNDRY_RAG/scripts/eval_vision_pdf_nm_false_sample.py", line 202, in main
+    summary = {
+                
+  File "/Users/alpha/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/pathlib.py", line 730, in relative_to
+    raise ValueError("{!r} is not in the subpath of {!r}"
+ValueError: 'data/t2_ragbench/results/vision-pdf-gpt5-nm-false-sample.jsonl' is not in the subpath of '/Users/alpha/AI_ML/FOUNDRY_RAG' OR one path is relative and the other is absolute.
